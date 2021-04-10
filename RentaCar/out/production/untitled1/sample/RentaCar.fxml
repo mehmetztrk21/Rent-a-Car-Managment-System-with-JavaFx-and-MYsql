@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="925.0" style="-fx-background-color: #343A48;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+    <children>
+        <VBox prefHeight="678.0" prefWidth="247.0" style="-fx-background-color: #343A40;">
+            <children>
+                <Label prefHeight="222.0" prefWidth="254.0" style="-fx-background-image: url(&quot;https://i.pinimg.com/originals/1e/2b/bb/1e2bbb88bc2fa3c3ce2f29cce2e09757.png&quot;); -fx-background-position: center; -fx-background-repeat: no-repeat; -fx-background-size: 253 285;" />
+                <Button fx:id="musteri" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="54.0" prefWidth="270.0" style="-fx-background-color: #6C757D; -fx-border-radius: 0;" text="Müşteri İşlemleri                     " wrapText="true">
+                    <font>
+                        <Font name="Arial" size="12.0" />
+                    </font>
+               <graphic>
+                  <ImageView fitHeight="29.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/customer.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+                </Button>
+                <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="54.0" prefWidth="270.0" style="-fx-background-color: #6C757D;" text="Tedarik İşlemleri                      ">
+                    <VBox.margin>
+                        <Insets top="10.0" />
+                    </VBox.margin>
+                    <font>
+                        <Font name="Arial" size="12.0" />
+                    </font>
+               <graphic>
+                  <ImageView fitHeight="29.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/truckk.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+                </Button>
+                <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="54.0" prefWidth="270.0" style="-fx-background-color: #6C757D;" text="Maliye İşlemleri                        ">
+                    <VBox.margin>
+                        <Insets top="10.0" />
+                    </VBox.margin>
+                    <font>
+                        <Font name="Arial" size="12.0" />
+                    </font>
+               <graphic>
+                  <ImageView fitHeight="29.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/money.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+                </Button>
+                <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="54.0" prefWidth="270.0" style="-fx-background-color: #6C757D;" text="Yıllık Tahmin İşlemleri               ">
+                    <VBox.margin>
+                        <Insets top="10.0" />
+                    </VBox.margin>
+                    <font>
+                        <Font name="Arial" size="12.0" />
+                    </font>
+               <graphic>
+                  <ImageView fitHeight="29.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/bars.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+                </Button>
+                <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="54.0" prefWidth="270.0" style="-fx-background-color: #6C757D;" text="Kullanıcı Yetkilendirme İşlemleri">
+                    <VBox.margin>
+                        <Insets top="10.0" />
+                    </VBox.margin>
+                    <font>
+                        <Font name="Arial" size="12.0" />
+                    </font>
+               <graphic>
+                  <ImageView fitHeight="29.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/admin-with-cogwheels.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+                </Button>
+                <Button alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="54.0" prefWidth="247.0" style="-fx-background-color: #6C757D;" text="Hesap Ayarları                           ">
+                    <VBox.margin>
+                        <Insets top="10.0" />
+                    </VBox.margin>
+                    <font>
+                        <Font name="Arial" size="12.0" />
+                    </font>
+               <graphic>
+                  <ImageView fitHeight="29.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/settings.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+                </Button>
+                <Button fx:id="logout" alignment="CENTER" mnemonicParsing="false" prefHeight="54.0" prefWidth="247.0" style="-fx-background-color: #DC3545;" text="Çıkış Yap">
+                    <VBox.margin>
+                        <Insets top="218.0" />
+                    </VBox.margin>
+                    <padding>
+                        <Insets bottom="10.0" top="10.0" />
+                    </padding>
+                    <font>
+                        <Font name="Arial" size="12.0" />
+                    </font>
+               <graphic>
+                  <ImageView fitHeight="29.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/log-out.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+                </Button>
+            </children>
+        </VBox>
+        <ImageView fitHeight="303.0" fitWidth="746.0" layoutX="199.0" layoutY="144.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="https://www.mesutelektronik.com/wp-content/uploads/2018/06/PNGPIX-COM-Black-BMW-M760Li-xDrive-Car-PNG-Image.png" />
+            </image>
+        </ImageView>
+        <Label alignment="CENTER_RIGHT" layoutX="753.0" prefHeight="45.0" prefWidth="158.0" style="-fx-text-fill: white;" text="04.04.2021, Pazar" textAlignment="JUSTIFY" textFill="#eae1e1">
+            <font>
+                <Font name="Arial" size="12.0" />
+            </font>
+        </Label>
+    </children>
+</Pane>

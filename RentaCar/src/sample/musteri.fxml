@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="925.0" style="-fx-background-color: #343A48;" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MusteriController">
+  <tabs>
+    <Tab style="-fx-background-color: #17A2B8;" text=" Müşteri Listesi">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="680.0" prefWidth="925.0">
+               <children>
+                  <ImageView fitHeight="463.0" fitWidth="949.0" layoutX="28.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5;">
+                     <image>
+                        <Image url="@img/frrr.png" />
+                     </image>
+                  </ImageView>
+                  <TableView layoutX="105.0" layoutY="47.0" prefHeight="554.0" prefWidth="716.0" style="-fx-background-color: #F8F9FA;">
+                    <columns>
+                      <TableColumn prefWidth="75.0" style="-fx-background-color: #6C757D;" text="ID" />
+                        <TableColumn prefWidth="93.0" style="-fx-background-color: #6C757D;" text="Ad" />
+                        <TableColumn prefWidth="93.0" style="-fx-background-color: #6C757D;" text="Soyad" />
+                        <TableColumn prefWidth="93.0" style="-fx-background-color: #6C757D;" text="Telefon" />
+                        <TableColumn prefWidth="93.0" style="-fx-background-color: #6C757D;" text="Mail" />
+                        <TableColumn prefWidth="122.39996337890625" style="-fx-background-color: #6C757D;" text="Sipariş Toplam" />
+                        <TableColumn prefWidth="143.20001220703125" style="-fx-background-color: #6C757D;" text="Son Sipariş Tarihi" />
+                    </columns>
+                  </TableView>
+                  <Button fx:id="home" layoutX="860.0" layoutY="5.0" mnemonicParsing="false" style="-fx-background-color: #343A48;">
+                     <graphic>
+                        <ImageView fitHeight="46.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/house.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children></AnchorPane>
+      </content>
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/customer.png" />
+               </image>
+            </ImageView>
+         </graphic>
+    </Tab>
+      <Tab style="-fx-background-color: #17A2B8;" text=" Müşteri Ekle">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="680.0" prefWidth="925.0">
+               <children>
+                  <ImageView fitHeight="463.0" fitWidth="949.0" layoutX="28.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5;">
+                     <image>
+                        <Image url="@img/frrr.png" />
+                     </image>
+                  </ImageView>
+                  <TextField layoutX="14.0" layoutY="290.0" prefHeight="37.0" prefWidth="318.0" promptText="Müşteri Soyadı" style="-fx-background-color: #F8F9FA;">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField layoutX="14.0" layoutY="230.0" prefHeight="37.0" prefWidth="318.0" promptText="Müşteri Adı" style="-fx-background-color: #F8F9FA;">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField layoutX="14.0" layoutY="350.0" prefHeight="37.0" prefWidth="318.0" promptText="Telefon" style="-fx-background-color: #F8F9FA;">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField layoutX="14.0" layoutY="410.0" prefHeight="37.0" prefWidth="318.0" promptText="Mail" style="-fx-background-color: #F8F9FA;">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </TextField>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="98.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/profile.png" />
+                     </image>
+                  </ImageView>
+                  <Button layoutX="14.0" layoutY="470.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="318.0" style="-fx-background-radius: 10 10 10 10; -fx-background-color: #007BFF;" text="Kaydet">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="home2" layoutX="860.0" layoutY="5.0" mnemonicParsing="false" style="-fx-background-color: #343A48;">
+                     <graphic>
+                        <ImageView fitHeight="46.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/house.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children></AnchorPane>
+         </content>
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/add-group.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Tab>
+      <Tab style="-fx-background-color: #17A2B8;" text=" Müşteri Düzenle">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="680.0" prefWidth="925.0">
+               <children>
+                  <ImageView fitHeight="463.0" fitWidth="949.0" layoutX="28.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5;">
+                     <image>
+                        <Image url="@img/frrr.png" />
+                     </image>
+                  </ImageView>
+                  <TextField fx:id="emsurname" layoutX="14.0" layoutY="420.0" prefHeight="37.0" prefWidth="318.0" promptText="Müşteri Soyadı" style="-fx-background-color: #F8F9FA;">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="emname" layoutX="14.0" layoutY="360.0" prefHeight="37.0" prefWidth="318.0" promptText="Müşteri Adı" style="-fx-background-color: #F8F9FA;">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="emtel" layoutX="14.0" layoutY="480.0" prefHeight="37.0" prefWidth="318.0" promptText="Telefon" style="-fx-background-color: #F8F9FA;">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="emmail" layoutX="14.0" layoutY="540.0" prefHeight="37.0" prefWidth="318.0" promptText="Mail" style="-fx-background-color: #F8F9FA;">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </TextField>
+                  <ImageView fitHeight="166.0" fitWidth="173.0" layoutX="388.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/edit.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="emsave" layoutX="14.0" layoutY="600.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="318.0" style="-fx-background-radius: 10 10 10 10; -fx-background-color: #007BFF;" text="Kaydet">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Button>
+                  <TextField layoutX="248.0" layoutY="226.0" prefHeight="38.0" prefWidth="446.0" promptText="Müşteri ID" style="-fx-background-color: #F8F9FA;">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="emfind" layoutX="367.0" layoutY="286.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="208.0" style="-fx-background-radius: 10 10 10 10; -fx-background-color: #28A745;" text="Müşteriyi Bul">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="home3" layoutX="860.0" layoutY="5.0" mnemonicParsing="false" style="-fx-background-color: #343A48;">
+                     <graphic>
+                        <ImageView fitHeight="46.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/house.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </content>
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/edit (2).png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Tab>
+      <Tab style="-fx-background-color: #17A2B8;" text=" Müşteri Sil">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="680.0" prefWidth="925.0">
+               <children>
+                  <ImageView fitHeight="463.0" fitWidth="949.0" layoutX="28.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5;">
+                     <image>
+                        <Image url="@img/frrr.png" />
+                     </image>
+                  </ImageView>
+                  <TextField layoutX="240.0" layoutY="265.0" prefHeight="38.0" prefWidth="446.0" promptText="Müşteri ID" style="-fx-background-color: #F8F9FA;">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </TextField>
+                  <ImageView fitHeight="186.0" fitWidth="241.0" layoutX="370.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/man (1).png" />
+                     </image>
+                  </ImageView>
+                  <Button layoutX="240.0" layoutY="347.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="208.0" style="-fx-background-radius: 10 10 10 10; -fx-background-color: #DC3545;" text="Müşteriyi Sil">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="478.0" layoutY="347.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="208.0" style="-fx-background-radius: 10 10 10 10; -fx-background-color: #28A745;" text="Kontrol Et">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="home4" layoutX="860.0" layoutY="5.0" mnemonicParsing="false" style="-fx-background-color: #343A48;">
+                     <graphic>
+                        <ImageView fitHeight="46.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/house.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Label layoutX="240.0" layoutY="426.0" prefHeight="38.0" prefWidth="446.0" />
+               </children></AnchorPane>
+         </content>
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/remove-user.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Tab>
+  </tabs>
+</TabPane>
