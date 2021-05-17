@@ -18,11 +18,8 @@ public class Main extends Application {
         scene.getStylesheets().add("sample/style.css");
         stage.setTitle("Top Car");
         stage.setScene(scene);
-
         stage.show();
     }
-
-
     public static void main(String[] args) {
         launch(args);
     }

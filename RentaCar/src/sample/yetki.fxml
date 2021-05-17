@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="927.0" style="-fx-background-color: #343A48;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.YetkiController">
+   <children>
+      <TableView layoutX="46.0" layoutY="64.0" prefHeight="554.0" prefWidth="593.0" style="-fx-background-color: #F8F9FA;">
+         <columns>
+            <TableColumn prefWidth="75.0" style="-fx-background-color: #6C757D;" text="ID" />
+            <TableColumn prefWidth="93.0" style="-fx-background-color: #6C757D;" text="Ad" />
+            <TableColumn prefWidth="93.0" style="-fx-background-color: #6C757D;" text="Soyad" />
+            <TableColumn prefWidth="93.0" style="-fx-background-color: #6C757D;" text="Telefon" />
+            <TableColumn prefWidth="93.0" style="-fx-background-color: #6C757D;" text="Mail" />
+            <TableColumn prefWidth="143.20001220703125" style="-fx-background-color: #6C757D;" text="Durum" />
+         </columns>
+      </TableView>
+      <Button fx:id="home" layoutX="858.0" mnemonicParsing="false" onAction="#home" style="-fx-background-color: #343A48;">
+         <graphic>
+            <ImageView fitHeight="46.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/house.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button layoutX="698.0" layoutY="535.0" mnemonicParsing="false" onAction="#yetkilendir" prefHeight="37.0" prefWidth="151.0" style="-fx-background-radius: 10 10 10 10; -fx-background-color: #007BFF;" text="Yetkilendir">
+         <font>
+            <Font name="Arial" size="17.0" />
+         </font>
+      </Button>
+      <Label fx:id="id" layoutX="775.0" layoutY="231.0" text="ID" textFill="WHITE">
+         <font>
+            <Font size="17.0" />
+         </font></Label>
+      <Label fx:id="ad" layoutX="773.0" layoutY="277.0" text="Ad" textFill="WHITE">
+         <font>
+            <Font size="17.0" />
+         </font></Label>
+      <Label fx:id="soyad" layoutX="761.0" layoutY="310.0" text="Soyad" textFill="WHITE">
+         <font>
+            <Font size="17.0" />
+         </font></Label>
+      <Label fx:id="telefon" layoutX="756.0" layoutY="351.0" text="Telefon" textFill="WHITE">
+         <font>
+            <Font size="17.0" />
+         </font></Label>
+      <Label fx:id="mail" layoutX="767.0" layoutY="399.0" text="Mail" textFill="WHITE">
+         <font>
+            <Font size="17.0" />
+         </font></Label>
+      <TextField fx:id="sifre" layoutX="681.0" layoutY="480.0" promptText="Şifrenizi Girin" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="708.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@img/boss.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
