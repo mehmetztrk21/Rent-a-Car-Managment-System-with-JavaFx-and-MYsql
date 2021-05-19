@@ -10,6 +10,17 @@ public class User {
     private String email;
     private int role_id;
 
+    public User(int id, String name, String surname, String username, String password, String phone, String email, int role_id) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.username = username;
+        this.password = password;
+        this.phone = phone;
+        this.email = email;
+        this.role_id = role_id;
+    }
+
     public int getId() {
         return id;
     }

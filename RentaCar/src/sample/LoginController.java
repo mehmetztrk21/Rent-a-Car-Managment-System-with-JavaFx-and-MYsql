@@ -29,11 +29,15 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        String username1=username.getText();
+        String password1= password.getText();
 
         login.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                if (username.getText().equals("mehmet") && password.getText().equals( "123")) {
+                if (control(username.getText(),password.getText())) {
+                    MysqlUser user = new MysqlUser();
+                    user.savelogin(username.getText());
 
                     try {
                         Main.root = FXMLLoader.load(getClass().getResource("RentaCar.fxml"));
@@ -57,5 +61,10 @@ public class LoginController implements Initializable {
 
 
         });
+    }
+    public boolean control(String username, String password){
+        MysqlUser user = new MysqlUser();
+        System.out.println(username+ password);
+        return user.search(username,password);
     }
 }

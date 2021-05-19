@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="536.0" prefWidth="717.0" style="-fx-background-color: #343A48;" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.TedarikController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="536.0" prefWidth="717.0" style="-fx-background-color: #343A48;" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.TedarikController">
   <tabs>
     <Tab style="-fx-background-color: #17A2B8;" text="Kargo Yolla">
       <content>
@@ -28,19 +28,20 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <TextField layoutX="275.0" layoutY="181.0" prefHeight="31.0" prefWidth="200.0" promptText="TELEFON:" />
-                  <TextArea layoutX="275.0" layoutY="226.0" prefHeight="200.0" prefWidth="200.0" promptText="ADRES:" />
-                  <TextField layoutX="275.0" layoutY="138.0" prefHeight="31.0" prefWidth="198.0" promptText="AD SOYAD:" />
-                  <TextField layoutX="275.0" layoutY="89.0" prefHeight="31.0" prefWidth="198.0" promptText="KARGO İP:" />
-                  <Label layoutX="286.0" layoutY="44.0" opacity="0.64" text="KARGO BİLGİLERİ" textFill="WHITE">
+                  <TextField fx:id="cargophone" layoutX="275.0" layoutY="190.0" prefHeight="31.0" prefWidth="200.0" promptText="TELEFON:" />
+                  <TextArea fx:id="cargoaddress" layoutX="275.0" layoutY="237.0" prefHeight="200.0" prefWidth="200.0" promptText="ADRES:" />
+                  <TextField fx:id="cargoname" layoutX="275.0" layoutY="106.0" prefHeight="31.0" prefWidth="198.0" promptText="AD:" />
+                  <TextField fx:id="cargoip" layoutX="275.0" layoutY="63.0" prefHeight="31.0" prefWidth="198.0" promptText="KARGO İP:" />
+                  <Label layoutX="286.0" layoutY="27.0" opacity="0.64" text="KARGO BİLGİLERİ" textFill="WHITE">
                      <font>
                         <Font name="Segoe MDL2 Assets" size="22.0" />
                      </font></Label>
-                  <Button layoutX="389.0" layoutY="437.0" mnemonicParsing="false" style="-fx-background-color: #28A745; -fx-background-radius: 10 10 10 10;" text="KARGOLA" />
+                  <Button fx:id="csend" layoutX="404.0" layoutY="447.0" mnemonicParsing="false" style="-fx-background-color: #28A745; -fx-background-radius: 10 10 10 10;" text="KARGOLA" />
+                  <TextField fx:id="cargosurname" layoutX="275.0" layoutY="149.0" prefHeight="31.0" prefWidth="198.0" promptText="SOYAD:" />
                </children></AnchorPane>
       </content>
          <graphic>
-            <ImageView fitHeight="55.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="47.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@img/paket.png" />
                </image>
@@ -60,8 +61,8 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <TextField layoutX="243.0" layoutY="110.0" prefHeight="31.0" prefWidth="198.0" promptText="KARGO İP:" />
-                  <Button layoutX="464.0" layoutY="110.0" mnemonicParsing="false" style="-fx-background-color: #28A745; -fx-background-radius: 10 10 10 10;" text="ARA" />
+                  <TextField fx:id="carrgoipfind" layoutX="243.0" layoutY="110.0" prefHeight="31.0" prefWidth="198.0" promptText="KARGO İP:" />
+                  <Button fx:id="cfind" layoutX="464.0" layoutY="110.0" mnemonicParsing="false" style="-fx-background-color: #28A745; -fx-background-radius: 10 10 10 10;" text="ARA" />
                   <ProgressBar layoutX="95.0" layoutY="317.0" prefHeight="23.0" prefWidth="528.0" progress="0.0" />
                   <ImageView fitHeight="94.0" fitWidth="119.0" layoutX="54.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -85,6 +86,7 @@
                      <font>
                         <Font size="22.0" />
                      </font></Label>
+                  <Label fx:id="cargofindlabel" layoutX="309.0" layoutY="161.0" text="Durum" textFill="WHITE" />
                </children></AnchorPane>
       </content>
          <graphic>
@@ -108,13 +110,13 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <TextField fx:id="txtdurumip" layoutX="255.0" layoutY="125.0" prefHeight="31.0" prefWidth="198.0" promptText="KARGO İP:" />
-                  <Button fx:id="btndurumgoster" layoutX="466.0" layoutY="125.0" mnemonicParsing="false" style="-fx-background-color: #007BFF; -fx-background-radius: 10 10 10 10;" text="GÖSTER" />
+                  <TextField fx:id="deletecargoip" layoutX="255.0" layoutY="125.0" prefHeight="31.0" prefWidth="198.0" promptText="KARGO İP:" />
+                  <Button layoutX="466.0" layoutY="125.0" mnemonicParsing="false" style="-fx-background-color: #007BFF; -fx-background-radius: 10 10 10 10;" text="GÖSTER" />
                   <Label layoutX="276.0" layoutY="62.0" opacity="0.64" text="KARGO İPTAL ET" textFill="WHITE">
                      <font>
                         <Font name="Segoe MDL2 Assets" size="22.0" />
                      </font></Label>
-                  <Button fx:id="btndurumiptal" layoutX="320.0" layoutY="417.0" mnemonicParsing="false" style="-fx-background-color: #DC3545; -fx-background-radius: 10 10 10 10;" text="İPTAL ET" />
+                  <Button fx:id="cdelete" layoutX="320.0" layoutY="417.0" mnemonicParsing="false" style="-fx-background-color: #DC3545; -fx-background-radius: 10 10 10 10;" text="İPTAL ET" />
                   <Label fx:id="lbldurum" layoutX="243.0" layoutY="364.0" />
                   <ImageView fx:id="imgdurum" fitHeight="150.0" fitWidth="200.0" layoutX="158.0" layoutY="188.0" pickOnBounds="true" preserveRatio="true" />
                   <ListView fx:id="listdurum" layoutX="434.0" layoutY="188.0" prefHeight="200.0" prefWidth="200.0" />
@@ -141,18 +143,19 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <TextField fx:id="txtdurumip1" layoutX="241.0" layoutY="88.0" prefHeight="31.0" prefWidth="198.0" promptText="KARGO İP:" />
-                  <Button fx:id="btndurumgoster1" layoutX="467.0" layoutY="88.0" mnemonicParsing="false" style="-fx-background-color: #007BFF; -fx-background-radius: 10 10 10 10;" text="GÖSTER" />
+                  <TextField fx:id="cargoidshow" layoutX="241.0" layoutY="88.0" prefHeight="31.0" prefWidth="198.0" promptText="KARGO İP:" />
+                  <Button fx:id="cshow" layoutX="467.0" layoutY="88.0" mnemonicParsing="false" style="-fx-background-color: #007BFF; -fx-background-radius: 10 10 10 10;" text="GÖSTER" />
                   <Label layoutX="283.0" layoutY="44.0" opacity="0.64" text="KARGO DÜZENLE" textFill="WHITE">
                      <font>
                         <Font name="Segoe MDL2 Assets" size="22.0" />
                      </font></Label>
                   <Label fx:id="lbldurum1" layoutX="103.0" layoutY="350.0" prefHeight="21.0" prefWidth="26.0" />
                   <ImageView fx:id="imgdurum1" fitHeight="150.0" fitWidth="200.0" layoutX="60.0" layoutY="185.0" pickOnBounds="true" preserveRatio="true" />
-                  <TextField layoutX="367.0" layoutY="157.0" prefHeight="31.0" prefWidth="200.0" promptText="AD SOYAD:" />
-                  <TextArea layoutX="367.0" layoutY="240.0" prefHeight="200.0" prefWidth="200.0" promptText="ADRES:" />
-                  <TextField layoutX="368.0" layoutY="202.0" prefHeight="31.0" prefWidth="198.0" promptText="TELEFON:" />
-                  <Button layoutX="582.0" layoutY="392.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="100.0" style="-fx-background-color: #28A745; -fx-background-radius: 10 10 10 10;" text="DÜZENLE" />
+                  <TextField fx:id="cargosurnameshow" layoutX="367.0" layoutY="185.0" prefHeight="31.0" prefWidth="200.0" promptText="SOYAD:" />
+                  <TextArea fx:id="cargoaddressshow" layoutX="367.0" layoutY="272.0" prefHeight="200.0" prefWidth="200.0" promptText="ADRES:" />
+                  <TextField fx:id="cargophoneshow" layoutX="368.0" layoutY="228.0" prefHeight="31.0" prefWidth="198.0" promptText="TELEFON:" />
+                  <Button fx:id="cupdate" layoutX="582.0" layoutY="416.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="100.0" style="-fx-background-color: #28A745; -fx-background-radius: 10 10 10 10;" text="DÜZENLE" />
+                  <TextField fx:id="cargonameshow" layoutX="367.0" layoutY="142.0" prefHeight="31.0" prefWidth="200.0" promptText="AD:" />
                </children>
             </AnchorPane>
         </content>
