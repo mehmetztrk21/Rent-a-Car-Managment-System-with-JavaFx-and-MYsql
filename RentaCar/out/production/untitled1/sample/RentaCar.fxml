@@ -25,6 +25,9 @@
                      </image>
                   </ImageView>
                </graphic>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
                 </Button>
                 <Button fx:id="tedarik" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="54.0" prefWidth="270.0" style="-fx-background-color: #6C757D;" text="Tedarik İşlemleri                      ">
                     <VBox.margin>
@@ -56,6 +59,21 @@
                   </ImageView>
                </graphic>
                 </Button>
+            <Button fx:id="kargo" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="54.0" prefWidth="247.0" style="-fx-background-color: #6C757D;" text="Kargo İşlemleri">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="29.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/pakethazir.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Button>
                 <Button fx:id="tahmin" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="54.0" prefWidth="270.0" style="-fx-background-color: #6C757D;" text="Yıllık Tahmin İşlemleri               ">
                     <VBox.margin>
                         <Insets top="10.0" />
@@ -67,21 +85,6 @@
                   <ImageView fitHeight="29.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@img/bars.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-                </Button>
-                <Button fx:id="yetki" alignment="TOP_LEFT" mnemonicParsing="false" prefHeight="54.0" prefWidth="270.0" style="-fx-background-color: #6C757D;" text="Kullanıcı Yetkilendirme İşlemleri">
-                    <VBox.margin>
-                        <Insets top="10.0" />
-                    </VBox.margin>
-                    <font>
-                        <Font name="Arial" size="12.0" />
-                    </font>
-               <graphic>
-                  <ImageView fitHeight="29.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@img/admin-with-cogwheels.png" />
                      </image>
                   </ImageView>
                </graphic>

@@ -13,6 +13,25 @@ public class MysqlUser implements IUser,IGeneric<User> {
     ResultSet resultSet2;
     @Override
     public LinkedList<User> GetAll() {
+
+        try {
+            connection = helper.getConnection();  //bağlanma.
+            System.out.println("Bağlantı oluştu.");
+            statement = connection.createStatement();  //statement böyle oluyor.(select için)
+
+            resultSet = statement.executeQuery("SELECT * from user");  //gelen sonuçlar da resultSet e aktarılıyor.
+
+            LinkedList<User> users = new LinkedList<User>();
+
+
+            while (resultSet.next()) { //burda da gelen dataları array liste atıyoruz.
+                users.add(new User(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("surname"),resultSet.getString("username"), resultSet.getString("password"), resultSet.getString("phone"), resultSet.getString("email"), resultSet.getInt("role_id"))); //select ile çağırdığımız verileri bir arraylist e attık.
+            }
+            return users;
+
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
         return null;
     }
 

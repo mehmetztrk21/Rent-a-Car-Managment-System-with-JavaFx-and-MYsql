@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="925.0" style="-fx-background-color: #343A48;" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.KargoController">
+   <tabs>
+      <Tab style="-fx-background-color: #17A2B8;" text="Kargo Takip">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="home2" layoutX="852.0" mnemonicParsing="false" onAction="#home" style="-fx-background-color: #343A48;">
+                     <graphic>
+                        <ImageView fitHeight="46.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/house.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <ImageView fitHeight="463.0" fitWidth="949.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.05;">
+                     <image>
+                        <Image url="@img/frrr.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </ImageView>
+                  <TextField fx:id="carrgoipfind" layoutX="278.0" layoutY="163.0" prefHeight="45.0" prefWidth="287.0" promptText="KARGO İP:" />
+                  <Button fx:id="cfind" layoutX="588.0" layoutY="163.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="77.0" style="-fx-background-color: #28A745; -fx-background-radius: 10 10 10 10;" text="ARA" />
+                  <ProgressBar fx:id="progressbar" layoutX="173.0" layoutY="378.0" prefHeight="33.0" prefWidth="596.0" progress="0.0" />
+                  <ImageView fitHeight="116.0" fitWidth="130.0" layoutX="125.0" layoutY="255.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/pakethazir.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="149.0" fitWidth="156.0" layoutX="380.0" layoutY="258.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/yolda.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="206.0" fitWidth="211.0" layoutX="618.0" layoutY="218.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/kargoteslim.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="155.0" layoutY="413.0" prefHeight="27.0" prefWidth="92.0" text="Hazırlanıyor" textFill="WHITE">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="433.0" layoutY="413.0" text="Yolda" textFill="WHITE">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="692.0" layoutY="414.0" text="Teslim Edildi" textFill="WHITE">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="397.0" layoutY="105.0" opacity="0.64" text="KARGO ARA" textFill="WHITE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="cargofindlabel" layoutX="399.0" layoutY="226.0" text="Durum" textFill="WHITE" />
+               </children>
+            </AnchorPane>
+         </content>
+         <graphic>
+            <ImageView fitHeight="45.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/takip.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Tab>
+      <Tab fx:id="kargYolTab" style="-fx-background-color: #17A2B8;" text="Kargo Yolla">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="home1" layoutX="860.0" layoutY="5.0" mnemonicParsing="false" onAction="#home" style="-fx-background-color: #343A48;">
+                     <graphic>
+                        <ImageView fitHeight="46.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/house.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <ImageView fitHeight="463.0" fitWidth="949.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5;">
+                     <image>
+                        <Image url="@img/frrr.png" />
+                     </image>
+                  </ImageView>
+                  <TextField fx:id="cargophone" layoutX="363.0" layoutY="265.0" prefHeight="30.0" prefWidth="200.0" promptText="TELEFON:">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </TextField>
+                  <TextArea fx:id="cargoaddress" layoutX="363.0" layoutY="310.0" prefHeight="200.0" prefWidth="200.0" promptText="ADRES:">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </TextArea>
+                  <TextField fx:id="cargosurname" layoutX="363.0" layoutY="220.0" prefHeight="30.0" prefWidth="198.0" promptText="SOYAD:">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="cargoip" layoutX="363.0" layoutY="130.0" prefHeight="30.0" prefWidth="198.0" promptText="KARGO İP:">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </TextField>
+                  <Label layoutX="365.0" layoutY="85.0" opacity="0.64" text="KARGO BİLGİLERİ" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe MDL2 Assets" size="24.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="csend" layoutX="511.0" layoutY="530.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="105.0" style="-fx-background-color: #28A745; -fx-background-radius: 10 10 10 10;" text="KARGOLA">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Button>
+                  <TextField fx:id="cargoname" layoutX="363.0" layoutY="175.0" prefHeight="30.0" prefWidth="198.0" promptText="AD:">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </AnchorPane>
+         </content>
+         <graphic>
+            <ImageView fitHeight="55.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/paket.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Tab>
+      <Tab style="-fx-background-color: #17A2B8;" text="Kargo İptal Et">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="463.0" fitWidth="949.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.2;">
+                     <image>
+                        <Image url="@img/frrr.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="home3" layoutX="852.0" mnemonicParsing="false" onAction="#home" style="-fx-background-color: #343A48;">
+                     <graphic>
+                        <ImageView fitHeight="46.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/house.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <TextField fx:id="deletecargoip" layoutX="305.0" layoutY="181.0" prefHeight="31.0" prefWidth="198.0" promptText="KARGO İP:">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="btndurumgoster" layoutX="516.0" layoutY="181.0" mnemonicParsing="false" onAction="#btndurumgoster" style="-fx-background-color: #007BFF; -fx-background-radius: 10 10 10 10;" text="GÖSTER">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="336.0" layoutY="120.0" opacity="0.64" text="KARGO İPTAL ET" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe MDL2 Assets" size="24.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="cdelete" layoutX="407.0" layoutY="587.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="111.0" style="-fx-background-color: #DC3545; -fx-background-radius: 10 10 10 10;" text="İPTAL ET">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="lbldurum" layoutX="243.0" layoutY="364.0" />
+                  <TextField fx:id="cargonameshow1" disable="true" layoutX="318.0" layoutY="228.0" opacity="0.99" prefHeight="42.0" prefWidth="265.0" promptText="AD:">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </TextField>
+                  <TextArea fx:id="cargoaddressshow1" disable="true" layoutX="318.0" layoutY="375.0" opacity="0.99" prefHeight="200.0" prefWidth="265.0" promptText="ADRES:">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </TextArea>
+                  <TextField fx:id="cargophoneshow1" disable="true" layoutX="318.0" layoutY="328.0" opacity="0.99" prefHeight="42.0" prefWidth="265.0" promptText="TELEFON:">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="cargosurnameshow1" disable="true" layoutX="318.0" layoutY="278.0" opacity="0.99" prefHeight="42.0" prefWidth="265.0" promptText="SOYAD:">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </AnchorPane>
+         </content>
+         <graphic>
+            <ImageView fitHeight="57.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/cancel.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Tab>
+      <Tab style="-fx-background-color: #17A2B8;" text="Kargo Düzenle">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="463.0" fitWidth="949.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.3;">
+                     <image>
+                        <Image url="@img/frrr.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="home4" layoutX="852.0" mnemonicParsing="false" onAction="#home" style="-fx-background-color: #343A48;">
+                     <graphic>
+                        <ImageView fitHeight="46.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/house.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <TextField fx:id="cargoidshow" layoutX="285.0" layoutY="139.0" prefHeight="38.0" prefWidth="210.0" promptText="KARGO İP:">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="cshow" layoutX="511.0" layoutY="139.0" mnemonicParsing="false" style="-fx-background-color: #007BFF; -fx-background-radius: 10 10 10 10;" text="GÖSTER">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="330.0" layoutY="95.0" opacity="0.64" text="KARGO DÜZENLE" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe MDL2 Assets" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lbldurum1" layoutX="103.0" layoutY="350.0" prefHeight="21.0" prefWidth="26.0" />
+                  <TextField fx:id="cargonameshow" layoutX="305.0" layoutY="197.0" prefHeight="42.0" prefWidth="265.0" promptText="AD:">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </TextField>
+                  <TextArea fx:id="cargoaddressshow" layoutX="305.0" layoutY="347.0" prefHeight="200.0" prefWidth="265.0" promptText="ADRES:">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </TextArea>
+                  <TextField fx:id="cargophoneshow" layoutX="305.0" layoutY="297.0" prefHeight="42.0" prefWidth="265.0" promptText="TELEFON:">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </TextField>
+                  <Button fx:id="cupdate" layoutX="388.0" layoutY="560.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="100.0" style="-fx-background-color: #28A745; -fx-background-radius: 10 10 10 10;" text="DÜZENLE" />
+                  <TextField fx:id="cargosurnameshow" layoutX="305.0" layoutY="247.0" prefHeight="42.0" prefWidth="265.0" promptText="SOYAD:">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </AnchorPane>
+         </content>
+         <graphic>
+            <ImageView fitHeight="49.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/kargoedit.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Tab>
+      <Tab style="-fx-background-color: #17A2B8;" text="Fatura">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="463.0" fitWidth="949.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.3;">
+                     <image>
+                        <Image url="@img/frrr.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="home5" layoutX="852.0" mnemonicParsing="false" onAction="#home" style="-fx-background-color: #343A48;">
+                     <graphic>
+                        <ImageView fitHeight="46.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/house.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <ListView layoutX="156.0" layoutY="233.0" prefHeight="250.0" prefWidth="250.0" />
+                  <Label layoutX="201.0" layoutY="182.0" opacity="0.64" text="ÜRÜNÜ SEÇİN:" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe MDL2 Assets" size="24.0" />
+                     </font>
+                  </Label>
+                  <ListView layoutX="545.0" layoutY="233.0" prefHeight="250.0" prefWidth="250.0" />
+                  <Label layoutX="581.0" layoutY="182.0" opacity="0.64" text="ÜRÜN BİLGİLERİ" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe MDL2 Assets" size="24.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="116.0" fitWidth="106.0" layoutX="423.0" layoutY="288.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/sag.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </content>
+         <graphic>
+            <ImageView fitHeight="63.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/fatura.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Tab>
+   </tabs>
+</TabPane>

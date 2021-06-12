@@ -1,5 +1,9 @@
 package sample;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -7,194 +11,144 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.net.URL;
+import java.text.DecimalFormat;
+import java.util.LinkedList;
 import java.util.ResourceBundle;
 
 public class TedarikController implements Initializable {
-    @FXML
-    private Button csend;
 
     @FXML
-    private Button cfind;
+    private ListView<String> SatinUrunler;
 
     @FXML
-    private Button cshow;
+    private Label topFiyat;
 
     @FXML
-    private Button cdelete;
+    private TextField SatinAdSoyad;
+
+    @FXML
+    private TextField SatinTelf;
+
+    @FXML
+    private TextArea SatinAdres;
 
     @FXML
     private Button home1;
 
     @FXML
-    private Button home2;
+    private TextField urunAra;
 
     @FXML
-    private Button home3;
+    private TextField markaAra;
 
     @FXML
-    private TextField txtdurumip;
+    private TextField kartAdSoyadTxt;
 
     @FXML
-    private Button btndurumgoster;
+    private TextField kartNoTxt;
 
     @FXML
-    private Button btndurumiptal;
+    private TextField kartCvcTxt;
 
     @FXML
-    private Label lbldurum;
+    private TextField kartTarihTxt;
 
     @FXML
-    private ImageView imgdurum;
+    private TableView<Urunler> table;
 
     @FXML
-    private ListView<?> listdurum;
+    private TableColumn<Urunler, String> colIP;
 
     @FXML
-    private Button home4;
+    private TableColumn<Urunler, String> colMarka;
 
     @FXML
-    private TextField txtdurumip1;
+    private TableColumn<Urunler, String> colAd;
 
     @FXML
-    private Button btndurumgoster1;
+    private TableColumn<Urunler, Float> colFiyat;
 
     @FXML
-    private Label lbldurum1;
+    private TextField araTxt;
 
-    @FXML
-    private ImageView imgdurum1;
-
-    @FXML
-    private Button home5;
-
-    @FXML
-    private TextField cargoid;
-    @FXML
-    private TextField cargoname;
-    @FXML
-    private TextField cargosurname;
-    @FXML
-    private TextField cargophone;
-    @FXML
-    private TextArea cargoaddress;
-
-    @FXML
-    private TextField deletecargoip;
-
-    @FXML
-    private TextField cargoidshow;
-    @FXML
-    private TextField cargonameshow;
-    @FXML
-    private TextField cargosurnameshow;
-    @FXML
-    private TextField cargophoneshow;
-    @FXML
-    private TextArea cargoadressshow;
-
-    @FXML
-    private TextField carrgoipfind;
-
-    @FXML
-    private Label cargofindlabel;
-
-    @FXML
-    private Button cupdate;
+    //TODO tabloda fiyat yazan kısma exceldeki satın alma fiyatı yazan kısım ve yanına da birimi yazdırılacak
+    //Todo tablodaki herhangi bir satıra basılınca listview e ürünün adı eklenecek bu kısmı ben yapabilirim daha sonra
 
 
-
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        csend.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                CreateCargo(cargoname.getText(),cargosurname.getText(),cargophone.getText(),cargoaddress.getText());
+    @FXML
+    void SatinAl(ActionEvent event) {  //burası değişti.
+        if((SatinAdSoyad.getText().equals("") || SatinTelf.getText().equals("")) || SatinAdres.equals("")){//TODO 2 tanesi girnce giriyor bunu düzelitcem
+            //todo butonlardan biri mutlaka seçili olmalı şartı eklenecek
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Hata");
+            alert.setHeaderText("Eksik Giriş!");
+            alert.setContentText("Lütfen bilgileri eksiksiz girin.");
+            alert.showAndWait();
+        }else{
+            //todo listview(SatinUrunler) de ne ürün varsa fiyatı tablodan çekilecek ve topfiyat yazan label a yazdırılacak
+            //todo satın al butonuna basınca aynı zamanda exceldeki 2021 güncel yazan yerde kaç tane o üründen alınmışsa o kadar arttırılacak
+            //todo aynı şekilde satin al butonuna basılınca listIptal yazan listview'e o ürün eklenecek ve SatinUrunler listview'inden silinecek
+            System.out.println(SatinAdSoyad.getText());
+            CreateCargo(SatinAdSoyad.getText().split(" ")[0],SatinAdSoyad.getText().split(" ")[1],SatinTelf.getText(),SatinAdres.getText(),topFiyat.getText().split(" ")[0]);  //değişti.
+            MysqlCargo cargo=new MysqlCargo();  //burayı ekledim.
+            CreateOrdes(cargo.getLastCargo(),SatinUrunler.getItems());
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Giriş");
+            alert.setHeaderText("Başarılı Giriş!");
+            alert.setContentText("Bilgileriniz alındı. Ürünleriniz en yakın zamanda adresinize gönderilecektir");
+            alert.showAndWait();
+            SatinAdSoyad.setText("");
+            SatinTelf.setText("");
+            SatinAdres.setText("");
+            SatinUrunler.getItems().clear();
+            topFiyat.setText("0 TL");
+        }
+    }
+    @FXML
+    void kartSatinAlBtn(ActionEvent event) {
+        if(kartAdSoyadTxt.getText().equals("") || kartNoTxt.getText().equals("") || kartCvcTxt.equals("") || kartTarihTxt.equals("")){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Hata");
+            alert.setHeaderText("Eksik Giriş!");
+            alert.setContentText("Lütfen bilgileri eksiksiz girin.");
+            alert.showAndWait();
+        }else{
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Giriş");
+            alert.setHeaderText("Başarılı Giriş!");
+            alert.setContentText("Bilgileriniz alındı. Ürünleriniz en yakın zamanda adresinize gönderilecektir");
+            alert.showAndWait();
+            try {
+                Main.root = FXMLLoader.load(getClass().getResource("tedarik.fxml"));
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        });
-
-        cdelete.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                DeleteCargo(deletecargoip.getText());
-            }
-        });
-        cfind.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                FindCargo(carrgoipfind.getText());
-            }
-        });
-        cupdate.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                Cargo cargo=null;
-                cargo=getById(cargoidshow.getText());
-                cargo.setName(cargonameshow.getText());
-                cargo.setSurname(cargosurnameshow.getText());
-                cargo.setPhone(cargophoneshow.getText());
-                //cargo.setAddress(cargoaddressshow.getText());
-                UpdateCargo(cargo);
-                cargonameshow.setVisible(false);
-                cargosurnameshow.setVisible(false);
-                cargophoneshow.setVisible(false);
-                //cargoaddressshow.setVisible(false);
-                cupdate.setVisible(false);
-            }
-        });
-        cshow.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                Cargo cargo=null;
-                cargo=getById(cargoidshow.getText());
-                if(cargo!=null){
-                    cargonameshow.setVisible(true);
-                    cargosurnameshow.setVisible(true);
-                    cargophoneshow.setVisible(true);
-                    //cargoaddressshow.setVisible(true);
-                    cargonameshow.setText(cargo.getName());
-                    cargosurnameshow.setText(cargo.getSurname());
-                    cargophoneshow.setText(cargo.getPhone());
-                    //cargoaddressshow.setText(cargo.getAddress());
-                }
-                else{
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Hata");
-                    alert.setHeaderText("Sistem Mesajı");
-                    alert.setContentText(("Girilen ID ile ilişkili bir kargo bulunamadı."));
-                    alert.showAndWait();
-                }
-
-
-
-            }
-        });
-        csend.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                Cargo cargo=null;
-                cargo=getById(cargoid.getText());
-                cargo.setName(cargoname.getText());
-                cargo.setSurname(cargosurname.getText());
-                cargo.setPhone(cargophone.getText());
-                cargo.setAddress(cargoaddress.getText());
-                SaveCargo(cargo);
-                cargoname.setVisible(false);
-                cargosurname.setVisible(false);
-                cargophone.setVisible(false);
-                cargoaddress.setVisible(false);
-                csend.setVisible(false);
-            }
-        });
-
+            Scene scene=new Scene(Main.root);
+            scene.getStylesheets().add("sample/style.css");
+            Main.stage.setScene(scene);
+            Main.stage.show();
+        }
 
     }
 
+    @FXML
+    void geri(ActionEvent event) {
+        try {
+            Main.root = FXMLLoader.load(getClass().getResource("tedarik.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Scene scene=new Scene(Main.root);
+        scene.getStylesheets().add("sample/style.css");
+        Main.stage.setScene(scene);
+        Main.stage.show();
+    }
     @FXML
     void home(ActionEvent event) {
         try {
@@ -208,82 +162,83 @@ public class TedarikController implements Initializable {
         Main.stage.show();
     }
 
-    public void CreateCargo(String name, String surname,String phone,String address){
-        MysqlCargo cargo=new MysqlCargo();
-        Cargo new_cargo=new Cargo(name,surname,phone,address);
+    ObservableList<Urunler> urunler = FXCollections.observableArrayList();
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        colAd.setCellValueFactory(new PropertyValueFactory<>("ad"));
+        colMarka.setCellValueFactory(new PropertyValueFactory<>("marka"));
+        colIP.setCellValueFactory(new PropertyValueFactory<>("ID"));
+        colFiyat.setCellValueFactory(new PropertyValueFactory<>("fiyat"));
+        table.setItems(getAll2());
 
-        cargo.Create(new_cargo);
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Başarılı");
-        alert.setHeaderText("Sistem Mesajı");
-        alert.setContentText((name+" adlı müşteri sisteme eklendi."));
-        alert.showAndWait();
-        //tcustomer.setItems(getAll());
-    }
-    public void DeleteCargo(String id){
-        MysqlCargo cargo=new MysqlCargo();
-        cargo.Delete(id);
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Başarılı");
-        alert.setHeaderText("Sistem Mesajı");
-        alert.setContentText(("Kargo iptal edildi."));
-        alert.showAndWait();
-        //tcustomer.setItems(getAll());
-    }
-    public Cargo getById(String id){
-        MysqlCargo cargo=new MysqlCargo();
-        return cargo.getByID(id);
-    }
-    public void SaveCargo(Cargo carg){
-        MysqlCargo cargo=new MysqlCargo();
-        int count= cargo.Update(carg);
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        if(count>0){
-            alert.setTitle("Başarılı");
-            alert.setHeaderText("Sistem Mesajı");
-            alert.setContentText((carg.getName()+" adlı kargo güncellendi."));
-            alert.showAndWait();
-            //tcustomer.setItems(getAll());
-        }
-        else{
-            alert.setTitle("Hata");
-            alert.setHeaderText("Sistem Mesajı");
-            alert.setContentText(("Hata ile karşılaşıldı."));
-            alert.showAndWait();
-        }
-    }
-    public void FindCargo(String id){
-        MysqlCargo cargo=new MysqlCargo();
-        Cargo cargo1=cargo.getByID(id);
-        try {
-            cargofindlabel.setText("\t\t\t"+cargo1.getName().toUpperCase()+"  "+cargo1.getSurname().toUpperCase());
-            cargofindlabel.setStyle("-fx-background-color:white;");
-        }
-        catch (Exception e){
-            cargofindlabel.setStyle("-fx-background-color:none;");
-            cargofindlabel.setText("");
-        }
+        FilteredList<Urunler> filteredList = new FilteredList<>(urunler, b ->true);
 
+        araTxt.textProperty().addListener((observable, oldValue, newValue)->{
+            filteredList.setPredicate(employee ->{
+                if(newValue == null || newValue.isEmpty()){
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if(employee.getAd().toLowerCase().indexOf(lowerCaseFilter) != -1){
+                    return true;
+                }else if(employee.getMarka().toLowerCase().indexOf(lowerCaseFilter) !=-1){
+                    return true;
+                }else if(employee.getID().toLowerCase().indexOf(lowerCaseFilter) !=-1){
+                    return true;
+                }else//TODO burada ben int değerler için arama yapabilirim
+                    return false;
+            });
+        });
+
+        SortedList<Urunler> sortedList = new SortedList<>(filteredList);
+        sortedList.comparatorProperty().bind(table.comparatorProperty());
+        table.setItems(sortedList);
+
+        table.setOnMouseClicked(e ->{
+            if(e.getClickCount()==2){
+                for(Urunler urun: table.getSelectionModel().getSelectedItems()){
+                    SatinUrunler.getItems().add(urun.getMarka()+" - "+urun.getAd());
+                    DecimalFormat df = new DecimalFormat("###.##");      //burası değişti.
+                    topFiyat.setText(String.valueOf(df.format(Double.parseDouble(urun.getFiyat().split(" ")[0].replace(",","."))+Double.parseDouble(topFiyat.getText().split(" ")[0]))).replace(",",".")+" TL");
+                }
+            }
+        });
+        SatinUrunler.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent click) {
+
+                if (click.getClickCount() == 2) {
+                    SatinUrunler.getItems().remove(SatinUrunler.getSelectionModel().getSelectedItem());
+                }
+
+            }
+        });
     }
-    public void UpdateCargo(Cargo carg){
+    public ObservableList<Urunler> getAll2(){
+        MysqlUrunler urun=new MysqlUrunler();
+        LinkedList<Urunler> get_urun=new LinkedList<Urunler>();
+        get_urun=urun.GetAll2();
+        for (int i=0;i<get_urun.size();i++){
+            urunler.add(get_urun.get(i));
+        }
+        return urunler;
+    }
+    //alttaki 2 fonksiyon eklendi.
+    void CreateCargo(String name,String surname,String phone,String adress,String price){
         MysqlCargo cargo=new MysqlCargo();
-        int count= cargo.Update(carg);
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        if(count>0){
-            alert.setTitle("Başarılı");
-            alert.setHeaderText("Sistem Mesajı");
-            alert.setContentText((carg.getName()+" adlı kargo güncellendi."));
-            alert.showAndWait();
-            //tcustomer.setItems(getAll());
-        }
-        else{
-            alert.setTitle("Hata");
-            alert.setHeaderText("Sistem Mesajı");
-            alert.setContentText(("Hata ile karşılaşıldı."));
-            alert.showAndWait();
+        Cargo cargo1=new Cargo(name,surname,phone,adress,1,Double.parseDouble(price));
+
+        cargo.Create2(cargo1);
+    }
+    void CreateOrdes(int id,ObservableList<String> orders){  //burayı ekledim.
+
+        for (int i=0;i<orders.size();i++){
+
+            MysqlOrders orders1=new MysqlOrders();
+            orders1.Create(id,orders.get(i));
         }
     }
-
-
-
 }

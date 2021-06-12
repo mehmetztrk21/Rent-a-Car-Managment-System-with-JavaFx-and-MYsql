@@ -16,59 +16,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="633.0" prefWidth="918.0" style="-fx-background-color: #343A48;" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MaliyeController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="925.0" style="-fx-background-color: #343A48;" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MaliyeController">
   <tabs>
-    <Tab style="-fx-background-color: #17A2B8;" text="Ürünler">
-         <content>
-            <AnchorPane prefHeight="599.0" prefWidth="772.0">
-               <children>
-                  <Button fx:id="home1" layoutX="852.0" mnemonicParsing="false" onAction="#home" style="-fx-background-color: #343A48;">
-                     <graphic>
-                        <ImageView fitHeight="46.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@img/house.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <TableView layoutX="22.0" layoutY="129.0" prefHeight="430.0" prefWidth="876.0">
-                    <columns>
-                      <TableColumn prefWidth="171.0" text="Ürün İP" />
-                        <TableColumn prefWidth="224.0" text="Ürün Marka" />
-                      <TableColumn prefWidth="207.0" text="Ürün Adı" />
-                        <TableColumn minWidth="0.0" prefWidth="81.0" text="Stok" />
-                        <TableColumn minWidth="0.0" prefWidth="99.0" text="Fiyat" />
-                        <TableColumn prefWidth="93.0" text="Ekle/Çıkar" />
-                    </columns>
-                  </TableView>
-                  <TextField fx:id="urunAra" layoutX="615.0" layoutY="74.0" prefHeight="31.0" prefWidth="256.0" />
-                  <Label layoutX="441.0" layoutY="76.0" opacity="0.64" text="ÜRÜN ADI İLE ARA:" textFill="WHITE">
-                     <font>
-                        <Font name="Segoe MDL2 Assets" size="20.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="markaAra" layoutX="161.0" layoutY="72.0" prefHeight="31.0" prefWidth="256.0" />
-                  <Label layoutX="14.0" layoutY="76.0" opacity="0.64" text="MARKA İLE ARA:" textFill="WHITE">
-                     <font>
-                        <Font name="Segoe MDL2 Assets" size="20.0" />
-                     </font>
-                  </Label>
-                   
-               </children>
-            </AnchorPane>
-         </content>
-         <graphic>
-            <ImageView fitHeight="30.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@img/urunler.png" />
-               </image>
-            </ImageView>
-         </graphic></Tab>
     <Tab style="-fx-background-color: #17A2B8;" text="Satın Al">
          <content>
             <AnchorPane prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="home11" layoutX="852.0" mnemonicParsing="false" onAction="#home" style="-fx-background-color: #343A48;">
+                  <ImageView fitHeight="463.0" fitWidth="949.0" layoutX="28.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5;">
+                     <image>
+                        <Image url="@img/frrr.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="home11" layoutX="860.0" layoutY="5.0" mnemonicParsing="false" onAction="#home" style="-fx-background-color: #343A48;">
                      <graphic>
                         <ImageView fitHeight="46.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -83,7 +42,7 @@
                      </image>
                   </ImageView>
                   <ListView fx:id="SatinUrunler" layoutX="50.0" layoutY="168.0" prefHeight="359.0" prefWidth="237.0" />
-                  <RadioButton fx:id="Kapida" layoutX="368.0" layoutY="476.0" mnemonicParsing="false" selected="true" text="Kapıda Ödeme" textFill="WHITE">
+                  <RadioButton fx:id="kapi" layoutX="368.0" layoutY="476.0" mnemonicParsing="false" onAction="#Kapida" text="Kapıda Ödeme" textFill="WHITE">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -91,7 +50,7 @@
                         <ToggleGroup fx:id="Odeme" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton fx:id="Kartla" layoutX="617.0" layoutY="476.0" mnemonicParsing="false" text="Kartla Ödeme" textFill="WHITE" toggleGroup="$Odeme">
+                  <RadioButton fx:id="kart" layoutX="617.0" layoutY="476.0" mnemonicParsing="false" onAction="#Kartla" text="Kartla Ödeme" textFill="WHITE" toggleGroup="$Odeme">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -102,7 +61,7 @@
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="topFiyat" layoutX="491.0" layoutY="517.0" text="0.0 TL" textFill="WHITE">
+                  <Label fx:id="topFiyat" layoutX="491.0" layoutY="517.0" text="0 TL" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
@@ -135,11 +94,11 @@
                </image>
             </ImageView>
          </graphic></Tab>
-      <Tab style="-fx-background-color: #17A2B8;" text="İade Et">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+    <Tab style="-fx-background-color: #17A2B8;" text="Ürünler">
+         <content>
+            <AnchorPane prefHeight="599.0" prefWidth="772.0">
                <children>
-                  <Button fx:id="home12" layoutX="852.0" mnemonicParsing="false" onAction="#home" style="-fx-background-color: #343A48;">
+                  <Button fx:id="home1" layoutX="860.0" layoutY="5.0" mnemonicParsing="false" onAction="#home" style="-fx-background-color: #343A48;">
                      <graphic>
                         <ImageView fitHeight="46.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -148,11 +107,55 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <TextField fx:id="txtIptalip" layoutX="116.0" layoutY="266.0" prefHeight="31.0" prefWidth="198.0" promptText="ÜRÜN İP:" />
-                  <Button fx:id="btndurumgoster" layoutX="337.0" layoutY="266.0" mnemonicParsing="false" style="-fx-background-color: #007BFF; -fx-background-radius: 10 10 10 10;" text="GÖSTER" />
-                  <Button fx:id="btndurumiptal" layoutX="421.0" layoutY="462.0" mnemonicParsing="false" style="-fx-background-color: #DC3545; -fx-background-radius: 10 10 10 10;" text="İPTAL ET" />
+                  <TableView fx:id="table" layoutX="22.0" layoutY="129.0" prefHeight="430.0" prefWidth="876.0">
+                    <columns>
+                      <TableColumn fx:id="colIP" prefWidth="171.0" text="Ürün İP" />
+                        <TableColumn fx:id="colMarka" prefWidth="224.0" text="Ürün Marka" />
+                      <TableColumn fx:id="colAd" prefWidth="207.0" text="Ürün Adı" />
+                        <TableColumn fx:id="colStok" minWidth="0.0" prefWidth="81.0" text="Stok" />
+                        <TableColumn fx:id="colFiyat" minWidth="0.0" prefWidth="99.0" text="Fiyat" />
+                        <TableColumn fx:id="colDurum" prefWidth="93.0" text="Ekle/Çıkar" />
+                    </columns>
+                  </TableView>
+                  <TextField fx:id="araTxt" layoutX="295.0" layoutY="61.0" prefHeight="40.0" prefWidth="256.0" />
+                  <Label layoutX="202.0" layoutY="70.0" opacity="0.64" text="ARAMA:" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe MDL2 Assets" size="20.0" />
+                     </font>
+                  </Label>
+                   
+               </children>
+            </AnchorPane>
+         </content>
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/urunler.png" />
+               </image>
+            </ImageView>
+         </graphic></Tab>
+      <Tab style="-fx-background-color: #17A2B8;" text="İade Et">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="463.0" fitWidth="949.0" layoutX="28.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.5;">
+                     <image>
+                        <Image url="@img/frrr.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="home12" layoutX="860.0" layoutY="5.0" mnemonicParsing="false" onAction="#home" style="-fx-background-color: #343A48;">
+                     <graphic>
+                        <ImageView fitHeight="46.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/house.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <TextField fx:id="txtIptalip" layoutX="115.0" layoutY="266.0" prefHeight="39.0" prefWidth="197.0" promptText="Kargo ID" />
+                  <Button layoutX="337.0" layoutY="266.0" mnemonicParsing="false" onAction="#btndurumgoster" prefHeight="39.0" style="-fx-background-color: #007BFF; -fx-background-radius: 10 10 10 10;" text="GÖSTER" />
+                  <Button fx:id="btniptal" layoutX="403.0" layoutY="477.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="115.0" style="-fx-background-color: #DC3545; -fx-background-radius: 10 10 10 10;" text="İPTAL ET" />
                   <ListView fx:id="listIptal" layoutX="594.0" layoutY="236.0" prefHeight="200.0" prefWidth="200.0" />
-                  <TextField fx:id="txtBilgiIP" layoutX="116.0" layoutY="321.0" prefHeight="31.0" prefWidth="314.0" />
                   <Label layoutX="134.0" layoutY="195.0" opacity="0.64" text="ÜRÜN IP'YE GÖRE İPTAL ET:" textFill="WHITE">
                      <font>
                         <Font name="Segoe MDL2 Assets" size="22.0" />

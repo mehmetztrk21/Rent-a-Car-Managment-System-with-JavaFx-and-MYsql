@@ -2,6 +2,7 @@ package sample;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -51,14 +52,8 @@ public class MusteriController implements Initializable {
     private Button solOk;
     @FXML
     public Button home;
-    @FXML
-    public Button home2;
-    @FXML
-    public Button home3;
-    @FXML
-    public Button home4;
-    @FXML
 
+    @FXML
     public TableView<Customer> tcustomer;
 
     @FXML
@@ -88,9 +83,118 @@ public class MusteriController implements Initializable {
 
     @FXML
     public Label controlcustomername;
+    @FXML
+    private TableView<User> contactView;
+
+    @FXML
+    private Button btn;
+
+    @FXML
+    private TextField sifre;
+
+    @FXML
+    private Label soyadLbl;
+
+    @FXML
+    private Label KAdiLbl;
+
+    @FXML
+    private Label telfLbl;
+
+    @FXML
+    private Label mailLbl;
+
+    @FXML
+    private Label adLbl;
+
+    @FXML
+    private TableColumn<User, String> colAd;
+
+    @FXML
+    private TableColumn<User, String> colSoyad;
+
+    @FXML
+    private TableColumn<User, String> colKAd;
+
+    @FXML
+    private TableColumn<User, String> colTel;
+
+    @FXML
+    private TableColumn<User, Integer> colId;
+
+    @FXML
+    private TableColumn<User, Integer> colDurum;
+
+    private ObservableList<User> list;
+
+    private void initTables(){
+        colAd.setCellValueFactory(new PropertyValueFactory<User,String>("name"));
+        colSoyad.setCellValueFactory(new PropertyValueFactory<User,String>("surname"));
+        colKAd.setCellValueFactory(new PropertyValueFactory<User,String>("username"));
+        colTel.setCellValueFactory(new PropertyValueFactory<User,String>("phone"));
+        colId.setCellValueFactory(new PropertyValueFactory<User,Integer>("id"));
+        colDurum.setCellValueFactory(new PropertyValueFactory<User,Integer>("role_id"));
+    }
+
+    private void loadTableData(){
+        MysqlUser user=new MysqlUser();
+        ObservableList<User> users = FXCollections.observableArrayList();
+        LinkedList<User> get_users=new LinkedList<User>();
+        get_users=user.GetAll();
+        for (int i=0;i<get_users.size();i++){
+            users.add(get_users.get(i));
+        }
+        contactView.setItems(users);
+        contactView.setOnMouseClicked(e ->{
+            events();
+        });
+
+    }
+
+    private void events(){
+        btn.setDisable(false);
+        int id;
+        for (User yetki:contactView.getSelectionModel().getSelectedItems()){
+            adLbl.setText(yetki.getName());
+            soyadLbl.setText(yetki.getSurname());
+            KAdiLbl.setText(yetki.getUsername());
+            telfLbl.setText(yetki.getPhone());
+            mailLbl.setText(String.valueOf(yetki.getId()));
+            mailLbl.setVisible(false);
+        }
+        btn.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                MysqlUser user=new MysqlUser();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+                if(user.getUser().getPassword().equals(sifre.getText())){
+                    User  user_update=user.getByID(mailLbl.getText());
+                    user_update.setRole_id(1);
+                    user.Update(user_update);
+                    alert.setTitle("Başarılı");
+                    alert.setHeaderText("Sistem Mesajı");
+                    alert.setContentText(("Seçilen kullanıcı Admin olarak yetkilendirildi."));
+                    alert.showAndWait();
+                }
+                else{
+                    alert.setTitle("HATA");
+                    alert.setHeaderText("Sistem Mesajı");
+                    alert.setContentText(("Yanlış şifre girildi."));
+                    alert.showAndWait();
+                }
+
+            }
+        });
+        events();
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        btn.setDisable(true);
+        list= FXCollections.observableArrayList();
+        initTables();
+        loadTableData();
 
         //Customer sınıfı sütun adları.
         cid.setCellValueFactory(new PropertyValueFactory<Customer, Integer>("id"));
@@ -130,7 +234,6 @@ public class MusteriController implements Initializable {
                 ControlCustomer(dcid.getText());
             }
         });
-
 
 
         emfind.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -178,88 +281,21 @@ public class MusteriController implements Initializable {
                 emsave.setVisible(false);
             }
         });
-        home.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
 
-                try {
-                    Main.root = FXMLLoader.load(getClass().getResource("RentaCar.fxml"));
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                Scene scene=new Scene(Main.root);
-                scene.getStylesheets().add("sample/style.css");
-                Main.stage.setScene(scene);
-                Main.stage.show();
-            }
-        });
-        home.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-
-                try {
-                    Main.root = FXMLLoader.load(getClass().getResource("RentaCar.fxml"));
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                Scene scene=new Scene(Main.root);
-                scene.getStylesheets().add("sample/style.css");
-                Main.stage.setScene(scene);
-                Main.stage.show();
-            }
-        });
-        home2.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-
-                try {
-                    Main.root = FXMLLoader.load(getClass().getResource("RentaCar.fxml"));
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                Scene scene=new Scene(Main.root);
-                scene.getStylesheets().add("sample/style.css");
-                Main.stage.setScene(scene);
-                Main.stage.show();
-            }
-        });
-        home3.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-
-                try {
-                    Main.root = FXMLLoader.load(getClass().getResource("RentaCar.fxml"));
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                Scene scene=new Scene(Main.root);
-                scene.getStylesheets().add("sample/style.css");
-                Main.stage.setScene(scene);
-                Main.stage.show();
-            }
-        });
-        home4.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-
-                try {
-                    Main.root = FXMLLoader.load(getClass().getResource("RentaCar.fxml"));
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                Scene scene=new Scene(Main.root);
-                scene.getStylesheets().add("sample/style.css");
-                Main.stage.setScene(scene);
-                Main.stage.show();
-            }
-        });
 
         //emname.setStyle("-fx-background-radius: 250px; -fx-background-color:black;");
+    }
+    @FXML
+    void home(ActionEvent event) {
+        try {
+            Main.root = FXMLLoader.load(getClass().getResource("RentaCar.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Scene scene=new Scene(Main.root);
+        scene.getStylesheets().add("sample/style.css");
+        Main.stage.setScene(scene);
+        Main.stage.show();
     }
     public ObservableList<Customer> getAll(){
         MysqlCustomer customer=new MysqlCustomer();

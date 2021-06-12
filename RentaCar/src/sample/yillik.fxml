@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="925.0" style="-fx-background-color: #343A48;" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.YillikController">
+  <tabs>
+      <Tab style="-fx-background-color: #17A2B8;" text="Ürünler">
+         <content>
+            <AnchorPane prefHeight="599.0" prefWidth="772.0">
+               <children>
+                  <Button fx:id="home1" layoutX="860.0" layoutY="5.0" mnemonicParsing="false" onAction="#home" style="-fx-background-color: #343A48;">
+                     <graphic>
+                        <ImageView fitHeight="46.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/house.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <TableView fx:id="table" layoutX="22.0" layoutY="129.0" prefHeight="430.0" prefWidth="876.0">
+                     <columns>
+                        <TableColumn fx:id="colIP" prefWidth="171.0" text="Ürün İP" />
+                        <TableColumn fx:id="colMarka" prefWidth="219.0" text="Ürün Marka" />
+                        <TableColumn fx:id="colAd" prefWidth="232.0" text="Ürün Adı" />
+                        <TableColumn fx:id="colSuan" minWidth="0.0" prefWidth="130.0" text="Şuanki Stok" />
+                        <TableColumn fx:id="colGelecek" prefWidth="123.0" text="Gelecek Stok" />
+                     </columns>
+                  </TableView>
+                  <TextField fx:id="araTxt" layoutX="250.0" layoutY="71.0" prefHeight="40.0" prefWidth="256.0" />
+                  <Label layoutX="160.0" layoutY="80.0" opacity="0.64" text="ARAMA:" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe MDL2 Assets" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </content>
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/urunler.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Tab>
+  </tabs>
+</TabPane>
