@@ -15,7 +15,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.LinkedList;
@@ -37,27 +36,6 @@ public class TedarikController implements Initializable {
 
     @FXML
     private TextArea SatinAdres;
-
-    @FXML
-    private Button home1;
-
-    @FXML
-    private TextField urunAra;
-
-    @FXML
-    private TextField markaAra;
-
-    @FXML
-    private TextField kartAdSoyadTxt;
-
-    @FXML
-    private TextField kartNoTxt;
-
-    @FXML
-    private TextField kartCvcTxt;
-
-    @FXML
-    private TextField kartTarihTxt;
 
     @FXML
     private TableView<Urunler> table;
@@ -110,45 +88,7 @@ public class TedarikController implements Initializable {
             topFiyat.setText("0 TL");
         }
     }
-    @FXML
-    void kartSatinAlBtn(ActionEvent event) {
-        if(kartAdSoyadTxt.getText().equals("") || kartNoTxt.getText().equals("") || kartCvcTxt.equals("") || kartTarihTxt.equals("")){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Hata");
-            alert.setHeaderText("Eksik Giriş!");
-            alert.setContentText("Lütfen bilgileri eksiksiz girin.");
-            alert.showAndWait();
-        }else{
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Giriş");
-            alert.setHeaderText("Başarılı Giriş!");
-            alert.setContentText("Bilgileriniz alındı. Ürünleriniz en yakın zamanda adresinize gönderilecektir");
-            alert.showAndWait();
-            try {
-                Main.root = FXMLLoader.load(getClass().getResource("tedarik.fxml"));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            Scene scene=new Scene(Main.root);
-            scene.getStylesheets().add("sample/style.css");
-            Main.stage.setScene(scene);
-            Main.stage.show();
-        }
 
-    }
-
-    @FXML
-    void geri(ActionEvent event) {
-        try {
-            Main.root = FXMLLoader.load(getClass().getResource("tedarik.fxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Scene scene=new Scene(Main.root);
-        scene.getStylesheets().add("sample/style.css");
-        Main.stage.setScene(scene);
-        Main.stage.show();
-    }
     @FXML
     void home(ActionEvent event) {
         try {

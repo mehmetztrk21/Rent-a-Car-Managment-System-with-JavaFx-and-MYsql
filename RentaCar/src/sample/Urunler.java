@@ -14,7 +14,7 @@ public class Urunler {
         this.ad = ad;
         this.fiyat = fiyat;
     }
-    public Urunler(String ID, String stokSuan, String degisken, String marka, String ad) {
+    public Urunler(String ID, String marka, String ad, String stokSuan, String degisken) {
         this.ID = ID;
         this.stokSuan = stokSuan;
         this.stokGelecek = degisken;

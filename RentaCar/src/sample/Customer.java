@@ -1,31 +1,61 @@
 package sample;
 
 public class Customer {
-    //sütun isimleri
 
     private int id;
     private String name;
     private String surname;
+    private String kullanici_adi;
+    private String sifre;
     private String phone;
     private String email;
     private double last_order;
     private double total_order;
 
-    public Customer(int id, String name, String surname, String phone, String email, double last_order, double total_order) {
+    public Customer(int id, String name, String surname, String kullanici_adi, String phone, String email, double last_order, double total_order) {
         this.id = id;
         this.name = name;
         this.surname = surname;
+        this.kullanici_adi = kullanici_adi;
         this.phone = phone;
         this.email = email;
         this.last_order = last_order;
         this.total_order = total_order;
     }
-
-    public Customer(String name, String surname,  String email,String phone) {
+    public Customer(int id, String name, String surname, String kullanici_adi, String sifre, String phone, String email, double last_order, double total_order) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.kullanici_adi = kullanici_adi;
+        this.sifre = sifre;
+        this.phone = phone;
+        this.email = email;
+        this.last_order = last_order;
+        this.total_order = total_order;
+    }
+    public Customer(String name, String surname,  String email, String kullanici_adi, String sifre, String phone) {
         this.name = name;
         this.surname = surname;
         this.phone = phone;
         this.email = email;
+        this.sifre = sifre;
+        this.kullanici_adi = kullanici_adi;
+    }
+
+    public String getKullanici_adi() {
+        return kullanici_adi;
+    }
+
+    public void setKullanici_adi(String kullanici_adi) {
+        this.kullanici_adi = kullanici_adi;
+    }
+
+    public String getSifre() {
+        return sifre;
+    }
+
+    public void setSifre(String sifre) {
+        this.sifre = sifre;
     }
 
     public int getId() {

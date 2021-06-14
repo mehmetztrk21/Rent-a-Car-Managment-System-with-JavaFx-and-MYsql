@@ -3,7 +3,6 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -14,7 +13,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="925.0" style="-fx-background-color: #343A48;" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.KargoController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="925.0" style="-fx-background-color: #343A48;" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.KargoController">
    <tabs>
       <Tab style="-fx-background-color: #17A2B8;" text="Kargo Takip">
          <content>
@@ -75,7 +74,6 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <Label fx:id="cargofindlabel" layoutX="399.0" layoutY="226.0" text="Durum" textFill="WHITE" />
                </children>
             </AnchorPane>
          </content>
@@ -105,17 +103,17 @@
                         <Image url="@img/frrr.png" />
                      </image>
                   </ImageView>
-                  <TextField fx:id="cargophone" layoutX="363.0" layoutY="265.0" prefHeight="30.0" prefWidth="200.0" promptText="TELEFON:">
+                  <TextField fx:id="cargophone" disable="true" layoutX="363.0" layoutY="265.0" opacity="0.99" prefHeight="30.0" prefWidth="200.0" promptText="TELEFON:">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </TextField>
-                  <TextArea fx:id="cargoaddress" layoutX="363.0" layoutY="310.0" prefHeight="200.0" prefWidth="200.0" promptText="ADRES:">
+                  <TextArea fx:id="cargoaddress" disable="true" layoutX="363.0" layoutY="310.0" opacity="0.99" prefHeight="200.0" prefWidth="200.0" promptText="ADRES:">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </TextArea>
-                  <TextField fx:id="cargosurname" layoutX="363.0" layoutY="220.0" prefHeight="30.0" prefWidth="198.0" promptText="SOYAD:">
+                  <TextField fx:id="cargosurname" disable="true" layoutX="363.0" layoutY="220.0" opacity="0.99" prefHeight="30.0" prefWidth="198.0" promptText="SOYAD:">
                      <font>
                         <Font size="17.0" />
                      </font>
@@ -130,16 +128,21 @@
                         <Font name="Segoe MDL2 Assets" size="24.0" />
                      </font>
                   </Label>
-                  <Button fx:id="csend" layoutX="511.0" layoutY="530.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="105.0" style="-fx-background-color: #28A745; -fx-background-radius: 10 10 10 10;" text="KARGOLA">
+                  <Button fx:id="csend" layoutX="409.0" layoutY="534.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="105.0" style="-fx-background-color: #28A745; -fx-background-radius: 10 10 10 10;" text="KARGOLA">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </Button>
-                  <TextField fx:id="cargoname" layoutX="363.0" layoutY="175.0" prefHeight="30.0" prefWidth="198.0" promptText="AD:">
+                  <TextField fx:id="cargoname" disable="true" layoutX="363.0" layoutY="175.0" opacity="0.99" prefHeight="30.0" prefWidth="198.0" promptText="AD:">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </TextField>
+                  <Button fx:id="sendcargo" layoutX="577.0" layoutY="130.0" mnemonicParsing="false" style="-fx-background-color: #007BFF; -fx-background-radius: 10 10 10 10;" text="GÖSTER">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
          </content>
@@ -169,12 +172,12 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <TextField fx:id="deletecargoip" layoutX="305.0" layoutY="181.0" prefHeight="31.0" prefWidth="198.0" promptText="KARGO İP:">
+                  <TextField fx:id="deletecargoip" layoutX="318.0" layoutY="178.0" prefHeight="42.0" prefWidth="265.0" promptText="KARGO İP:">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </TextField>
-                  <Button fx:id="btndurumgoster" layoutX="516.0" layoutY="181.0" mnemonicParsing="false" onAction="#btndurumgoster" style="-fx-background-color: #007BFF; -fx-background-radius: 10 10 10 10;" text="GÖSTER">
+                  <Button fx:id="btndurumgoster" layoutX="592.0" layoutY="180.0" mnemonicParsing="false" onAction="#btndurumgoster" style="-fx-background-color: #007BFF; -fx-background-radius: 10 10 10 10;" text="GÖSTER">
                      <font>
                         <Font size="17.0" />
                      </font>
@@ -239,12 +242,12 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <TextField fx:id="cargoidshow" layoutX="285.0" layoutY="139.0" prefHeight="38.0" prefWidth="210.0" promptText="KARGO İP:">
+                  <TextField fx:id="cargoidshow" layoutX="306.0" layoutY="147.0" prefHeight="42.0" prefWidth="265.0" promptText="KARGO İP:">
                      <font>
                         <Font size="17.0" />
                      </font>
                   </TextField>
-                  <Button fx:id="cshow" layoutX="511.0" layoutY="139.0" mnemonicParsing="false" style="-fx-background-color: #007BFF; -fx-background-radius: 10 10 10 10;" text="GÖSTER">
+                  <Button fx:id="cshow" layoutX="591.0" layoutY="149.0" mnemonicParsing="false" style="-fx-background-color: #007BFF; -fx-background-radius: 10 10 10 10;" text="GÖSTER">
                      <font>
                         <Font size="17.0" />
                      </font>
@@ -283,52 +286,6 @@
             <ImageView fitHeight="49.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@img/kargoedit.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Tab>
-      <Tab style="-fx-background-color: #17A2B8;" text="Fatura">
-         <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <ImageView fitHeight="463.0" fitWidth="949.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.3;">
-                     <image>
-                        <Image url="@img/frrr.png" />
-                     </image>
-                  </ImageView>
-                  <Button fx:id="home5" layoutX="852.0" mnemonicParsing="false" onAction="#home" style="-fx-background-color: #343A48;">
-                     <graphic>
-                        <ImageView fitHeight="46.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@img/house.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <ListView layoutX="156.0" layoutY="233.0" prefHeight="250.0" prefWidth="250.0" />
-                  <Label layoutX="201.0" layoutY="182.0" opacity="0.64" text="ÜRÜNÜ SEÇİN:" textFill="WHITE">
-                     <font>
-                        <Font name="Segoe MDL2 Assets" size="24.0" />
-                     </font>
-                  </Label>
-                  <ListView layoutX="545.0" layoutY="233.0" prefHeight="250.0" prefWidth="250.0" />
-                  <Label layoutX="581.0" layoutY="182.0" opacity="0.64" text="ÜRÜN BİLGİLERİ" textFill="WHITE">
-                     <font>
-                        <Font name="Segoe MDL2 Assets" size="24.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="116.0" fitWidth="106.0" layoutX="423.0" layoutY="288.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@img/sag.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </AnchorPane>
-         </content>
-         <graphic>
-            <ImageView fitHeight="63.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@img/fatura.png" />
                </image>
             </ImageView>
          </graphic>

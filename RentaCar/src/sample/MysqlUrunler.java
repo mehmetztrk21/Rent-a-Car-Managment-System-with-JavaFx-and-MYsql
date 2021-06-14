@@ -10,7 +10,6 @@ public class MysqlUrunler implements IUrunler {
     Statement statement = null;  //Select işlemi için yani veritabanından bilgi çekmek için.
     PreparedStatement statement2 = null; //insert,update,delete gibi işlemler için.
     ResultSet resultSet; //gelen sonucun tutulması için.
-    ResultSet resultSet2;
 
     @Override
     public LinkedList<Urunler> GetAll() {
@@ -25,7 +24,7 @@ public class MysqlUrunler implements IUrunler {
             LinkedList<Urunler> urunler2 = new LinkedList<Urunler>();
 
             while (resultSet.next()) { //burda da gelen dataları array liste atıyoruz.
-                urunler.add(new Urunler(resultSet.getString("URUN_KODU"), resultSet.getString("2021_Guncel"), resultSet.getString("2021_Tahmin"), resultSet.getString("MARKA"), resultSet.getString("URUN_ADI"))); //select ile çağırdığımız verileri bir arraylist e attık.
+                urunler.add(new Urunler(resultSet.getString("URUN_KODU"), resultSet.getString("MARKA"), resultSet.getString("URUN_ADI"), resultSet.getString("2021_Guncel"), resultSet.getString("2021_Tahmin"))); //select ile çağırdığımız verileri bir arraylist e attık.
                 urunler2.add(new Urunler(resultSet.getString("URUN_KODU"), resultSet.getString("MARKA"), resultSet.getString("URUN_ADI"), resultSet.getString("SATINALMA_FIYATI")+ resultSet.getString("2021_Tahmin"))); //select ile çağırdığımız verileri bir arraylist e attık.
             }
             return urunler;
@@ -46,7 +45,7 @@ public class MysqlUrunler implements IUrunler {
             LinkedList<Urunler> urunler2 = new LinkedList<Urunler>();
 
             while (resultSet.next()) { //burda da gelen dataları array liste atıyoruz.
-                urunler2.add(new Urunler(resultSet.getString("URUN_KODU"), resultSet.getString("MARKA"), resultSet.getString("URUN_ADI"), resultSet.getString("SATINALMA_FIYATI")+" "+ resultSet.getString("SATINALMA_BIRIM"))); //select ile çağırdığımız verileri bir arraylist e attık.
+                urunler2.add(new Urunler(resultSet.getString("URUN_KODU"), resultSet.getString("MARKA"), resultSet.getString("URUN_ADI"), resultSet.getString("2021_GUNCEL"), resultSet.getString("SATINALMA_FIYATI")+" "+ resultSet.getString("SATINALMA_BIRIM"))); //select ile çağırdığımız verileri bir arraylist e attık.
             }
             return urunler2;
 

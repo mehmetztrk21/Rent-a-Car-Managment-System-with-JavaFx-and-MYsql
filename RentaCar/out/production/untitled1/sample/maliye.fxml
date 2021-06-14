@@ -109,12 +109,11 @@
                   </Button>
                   <TableView fx:id="table" layoutX="22.0" layoutY="129.0" prefHeight="430.0" prefWidth="876.0">
                     <columns>
-                      <TableColumn fx:id="colIP" prefWidth="171.0" text="Ürün İP" />
-                        <TableColumn fx:id="colMarka" prefWidth="224.0" text="Ürün Marka" />
-                      <TableColumn fx:id="colAd" prefWidth="207.0" text="Ürün Adı" />
-                        <TableColumn fx:id="colStok" minWidth="0.0" prefWidth="81.0" text="Stok" />
-                        <TableColumn fx:id="colFiyat" minWidth="0.0" prefWidth="99.0" text="Fiyat" />
-                        <TableColumn fx:id="colDurum" prefWidth="93.0" text="Ekle/Çıkar" />
+                      <TableColumn fx:id="colIP" prefWidth="218.0" text="Ürün İP" />
+                        <TableColumn fx:id="colMarka" prefWidth="191.0" text="Ürün Marka" />
+                      <TableColumn fx:id="colAd" prefWidth="261.0" text="Ürün Adı" />
+                        <TableColumn fx:id="colStok" minWidth="0.0" prefWidth="102.0" text="Stok" />
+                        <TableColumn fx:id="colFiyat" minWidth="0.0" prefWidth="103.0" text="Fiyat" />
                     </columns>
                   </TableView>
                   <TextField fx:id="araTxt" layoutX="295.0" layoutY="61.0" prefHeight="40.0" prefWidth="256.0" />

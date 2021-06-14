@@ -10,7 +10,6 @@ public class MysqlCargo{
     Statement statement = null;  //Select işlemi için yani veritabanından bilgi çekmek için.
     PreparedStatement statement2 = null; //insert,update,delete gibi işlemler için.
     ResultSet resultSet; //gelen sonucun tutulması için.
-    ResultSet resultSet2;
 
 
     public LinkedList<Cargo> GetAll() {
@@ -70,8 +69,6 @@ public class MysqlCargo{
         }
 
     }
-//    public Customer(int id, String name, String surname, String phone, String email,                           double last_order, double total_order) {
-
     public void Create(Cargo entity) {
         try {
             connection = helper.getConnection();  //bağlanma.
@@ -149,5 +146,26 @@ public class MysqlCargo{
         }
         return id;
     }
+
+    public int send(Cargo entity){
+        int result;
+        try {
+            connection = helper.getConnection();  //bağlanma.
+            String sql_update = "update cargo set name=? ,surname=?, phone=? , address=?,state=? where id=?";
+            statement2 = connection.prepareStatement(sql_update);
+            statement2.setString(1, entity.getName());  //bunlar da koddaki soru işaretleri yerine gelecekler.
+            statement2.setString(2, entity.getSurname());
+            statement2.setString(3, entity.getPhone());
+            statement2.setString(4, entity.getAddress());
+            statement2.setInt(5,2);
+            statement2.setInt(6,entity.getId());
+            result = statement2.executeUpdate();  //son iki satır olmasa da olur sadece kontrol amaçlı
+            return result;
+        } catch (SQLException exception) {
+            helper.showErrorMessage(exception);
+        }
+        return 0;
+    }
+
 
 }

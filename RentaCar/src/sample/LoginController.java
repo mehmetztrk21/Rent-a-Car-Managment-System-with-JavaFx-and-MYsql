@@ -1,20 +1,22 @@
 package sample;
 
 
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class    LoginController implements Initializable {
 
@@ -24,14 +26,13 @@ public class    LoginController implements Initializable {
     public TextField username;
     @FXML
     public PasswordField password;
+    @FXML
+    public Label date;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        String username1=username.getText();
-        String password1= password.getText();
-
+        datewrite();
         login.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -66,5 +67,19 @@ public class    LoginController implements Initializable {
         MysqlUser user = new MysqlUser();
         System.out.println(username+ password);
         return user.search(username,password);
+    }
+    public void datewrite() {
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                Platform.runLater(() -> {
+                    Date datex=new Date();
+                    SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+                    date.setText(formatter.format(datex).toString());
+                });
+            }
+        }, 0, 1000);
+
     }
 }

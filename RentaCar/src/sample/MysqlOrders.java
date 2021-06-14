@@ -1,8 +1,7 @@
 package sample;
 
-import com.mysql.cj.x.protobuf.MysqlxCrud;
 
-import java.sql.*;                   //burayı yaptım.
+import java.sql.*;
 import java.util.ArrayList;
 
 public class MysqlOrders {
@@ -11,7 +10,6 @@ public class MysqlOrders {
     Statement statement = null;  //Select işlemi için yani veritabanından bilgi çekmek için.
     PreparedStatement statement2 = null; //insert,update,delete gibi işlemler için.
     ResultSet resultSet; //gelen sonucun tutulması için.
-    ResultSet resultSet2;
 
     public void Create(int id, String product) {
         try {

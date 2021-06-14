@@ -14,9 +14,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-
-import javax.print.DocFlavor;
-import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.LinkedList;
@@ -30,6 +27,10 @@ public class MusteriController implements Initializable {
     @FXML
     public TextField caphone;
     @FXML
+    private TextField casifre;
+    @FXML
+    private TextField cakullanici;
+    @FXML
     public TextField camail;
     @FXML
     public Button cadd;
@@ -40,6 +41,10 @@ public class MusteriController implements Initializable {
     @FXML
     public TextField emsurname;
     @FXML
+    private TextField emsifre;
+    @FXML
+    private TextField emkullanici;
+    @FXML
     public TextField emphone;
     @FXML
     public TextField emid;
@@ -48,8 +53,6 @@ public class MusteriController implements Initializable {
     public Button emsave;
     @FXML
     public Button emfind;
-    @FXML
-    private Button solOk;
     @FXML
     public Button home;
 
@@ -62,6 +65,8 @@ public class MusteriController implements Initializable {
     private TableColumn<Customer, String> cname;
     @FXML
     private TableColumn<Customer, String> csurname;
+    @FXML
+    private TableColumn<Customer, String> ckullanici;
     @FXML
     private TableColumn<Customer, String> cphone;
     @FXML
@@ -150,17 +155,14 @@ public class MusteriController implements Initializable {
         });
 
     }
-
     private void events(){
         btn.setDisable(false);
-        int id;
         for (User yetki:contactView.getSelectionModel().getSelectedItems()){
             adLbl.setText(yetki.getName());
             soyadLbl.setText(yetki.getSurname());
             KAdiLbl.setText(yetki.getUsername());
             telfLbl.setText(yetki.getPhone());
             mailLbl.setText(String.valueOf(yetki.getId()));
-            mailLbl.setVisible(false);
         }
         btn.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -169,13 +171,14 @@ public class MusteriController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
                 if(user.getUser().getPassword().equals(sifre.getText())){
-                    User  user_update=user.getByID(mailLbl.getText());
+                    User user_update=user.getByID(mailLbl.getText());
                     user_update.setRole_id(1);
                     user.Update(user_update);
                     alert.setTitle("Başarılı");
                     alert.setHeaderText("Sistem Mesajı");
                     alert.setContentText(("Seçilen kullanıcı Admin olarak yetkilendirildi."));
                     alert.showAndWait();
+                    loadTableData();
                 }
                 else{
                     alert.setTitle("HATA");
@@ -200,6 +203,7 @@ public class MusteriController implements Initializable {
         cid.setCellValueFactory(new PropertyValueFactory<Customer, Integer>("id"));
         cname.setCellValueFactory(new PropertyValueFactory<Customer, String>("name"));
         csurname.setCellValueFactory(new PropertyValueFactory<Customer, String>("surname"));
+        ckullanici.setCellValueFactory(new PropertyValueFactory<Customer, String>("kullanici_adi"));
         cphone.setCellValueFactory(new PropertyValueFactory<Customer, String>("phone"));
         cmail.setCellValueFactory(new PropertyValueFactory<Customer, String>("email"));
         ctotal.setCellValueFactory(new PropertyValueFactory<Customer, Double>("total_order"));
@@ -207,18 +211,26 @@ public class MusteriController implements Initializable {
 
         tcustomer.setItems(getAll());  //tabloya ekleme.
 
-        emname.setVisible(false);
-        emsurname.setVisible(false);
-        emphone.setVisible(false);
-        emmail.setVisible(false);
-        emsave.setVisible(false);
+        emname.setDisable(true);
+        emsurname.setDisable(true);
+        emkullanici.setDisable(true);
+        emsifre.setDisable(true);
+        emphone.setDisable(true);
+        emmail.setDisable(true);
+        emsave.setDisable(true);
         controlcustomername.setStyle("-fx-background-color:none;");
 
 
         cadd.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                CreateCustomer(caname.getText(),casurname.getText(),camail.getText(),caphone.getText());
+                CreateCustomer(caname.getText(),casurname.getText(),camail.getText(),cakullanici.getText(),casifre.getText(), caphone.getText());
+                caname.setText("");
+                casurname.setText("");
+                camail.setText("");
+                caphone.setText("");
+                cakullanici.setText("");
+                casifre.setText("");
             }
         });
 
@@ -242,13 +254,17 @@ public class MusteriController implements Initializable {
               Customer customer=null;
               customer=getById(emid.getText());
               if(customer!=null){
-                  emname.setVisible(true);
-                  emsurname.setVisible(true);
-                  emphone.setVisible(true);
-                  emmail.setVisible(true);
-                  emsave.setVisible(true);
+                  emname.setDisable(false);
+                  emsurname.setDisable(false);
+                  emkullanici.setDisable(false);
+                  emsifre.setDisable(false);
+                  emphone.setDisable(false);
+                  emmail.setDisable(false);
+                  emsave.setDisable(false);
                   emname.setText(customer.getName());
                   emsurname.setText(customer.getSurname());
+                  emkullanici.setText(customer.getKullanici_adi());
+                  emsifre.setText(customer.getSifre());
                   emphone.setText(customer.getPhone());
                   emmail.setText(customer.getEmail());
               }
@@ -279,6 +295,8 @@ public class MusteriController implements Initializable {
                 emphone.setVisible(false);
                 emmail.setVisible(false);
                 emsave.setVisible(false);
+                emkullanici.setVisible(false);
+                emsifre.setVisible(false);
             }
         });
 
@@ -307,9 +325,19 @@ public class MusteriController implements Initializable {
         }
         return customers;
     }
-    public void CreateCustomer(String name, String surname,String mail,String phone){
+    public ObservableList<User> getAllUser(){
+        MysqlUser user=new MysqlUser();
+        ObservableList<User> users = FXCollections.observableArrayList();
+        LinkedList<User> get_users=new LinkedList<User>();
+        get_users=user.GetAll();
+        for (int i=0;i<get_users.size();i++){
+            users.add(get_users.get(i));
+        }
+        return users;
+    }
+    public void CreateCustomer(String name, String surname,String mail, String kullanici, String sifre, String phone){
         MysqlCustomer customer=new MysqlCustomer();
-        Customer new_customer=new Customer(name,surname,mail,phone);
+        Customer new_customer=new Customer(name,surname,mail,kullanici,sifre,phone);
 
         customer.Create(new_customer);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -318,6 +346,7 @@ public class MusteriController implements Initializable {
         alert.setContentText((name+" adlı müşteri sisteme eklendi."));
         alert.showAndWait();
         tcustomer.setItems(getAll());
+        contactView.setItems(getAllUser());
     }
     public void ControlCustomer(String id){
         MysqlCustomer customer=new MysqlCustomer();
@@ -341,6 +370,7 @@ public class MusteriController implements Initializable {
         alert.setContentText(("Müşteri silindi."));
         alert.showAndWait();
         tcustomer.setItems(getAll());
+        contactView.setItems(getAllUser());
     }
     public Customer getById(String id){
         MysqlCustomer customer=new MysqlCustomer();
@@ -348,6 +378,7 @@ public class MusteriController implements Initializable {
     }
     public void SaveCustomer(Customer cust){
         MysqlCustomer customer=new MysqlCustomer();
+        MysqlUser user=new MysqlUser();
         int count= customer.Update(cust);
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         if(count>0){
@@ -356,6 +387,7 @@ public class MusteriController implements Initializable {
             alert.setContentText((cust.getName()+" adlı müşteri güncellendi."));
             alert.showAndWait();
             tcustomer.setItems(getAll());
+            contactView.setItems(getAllUser());
         }
         else{
             alert.setTitle("Hata");

@@ -81,8 +81,20 @@ public class MysqlUser implements IUser,IGeneric<User> {
             statement2.setString(6, entity.getEmail());
             statement2.setDouble(7, entity.getRole_id());
             statement2.setInt(8,entity.getId());
-            result = statement2.executeUpdate();  //son iki satır olmasa da olur sadece kontrol amaçlı
+            statement2.executeUpdate();  //son iki satır olmasa da olur sadece kontrol amaçlı
             savelogin(entity.getUsername());
+
+            String sql_update2 = "update customer set name=? ,surname=?,username=?, password=?, phone=? , email=? where id=?";
+            statement2 = connection.prepareStatement(sql_update2);
+            statement2.setString(1, entity.getName());  //bunlar da koddaki soru işaretleri yerine gelecekler.
+            statement2.setString(2, entity.getSurname());
+            statement2.setString(3, entity.getUsername());
+            statement2.setString(4, entity.getPassword());
+            statement2.setString(5, entity.getPhone());
+            statement2.setString(6, entity.getEmail());
+            statement2.setInt(7,entity.getId());
+            result = statement2.executeUpdate();  //son iki satır olmasa da olur sadece kontrol amaçlı
+
             return result;
         } catch (SQLException exception) {
             helper.showErrorMessage(exception);

@@ -38,8 +38,6 @@ public class YillikController implements Initializable {
     @FXML
     private TextField araTxt;
 
-    //TODO tablea veritabanından bilgileri gir, gelecek stok sütununa excelde 2021 tahmin yazan gelcek şuanki stoğa da 2021Güncel olan yazılacak
-    //TODO 2022 gelecek planlaması yaparım daha sonra onu koyabiliriz
     @FXML
     void home(ActionEvent event) {
         try {
