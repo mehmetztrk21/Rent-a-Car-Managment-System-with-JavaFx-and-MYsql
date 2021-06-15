@@ -70,6 +70,7 @@ public class MysqlCustomer implements ICustomer, IGeneric<Customer> {
             String sql_delete = "delete from customer where id=?";
             statement2 = connection.prepareStatement(sql_delete);
             statement2.setString(1, id);
+            statement2.executeUpdate();
             String sql_delete2 = "delete from user where id=?";
             statement2 = connection.prepareStatement(sql_delete2);
             statement2.setString(1, id);

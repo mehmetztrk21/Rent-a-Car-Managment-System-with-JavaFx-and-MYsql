@@ -3,7 +3,7 @@ package sample;
 import java.sql.*;
 import java.util.LinkedList;
 
-public class MysqlCargo{
+public class MysqlCargo implements ICargo, IGeneric<Cargo> {
 
     Connection connection = null;
     DbHelper helper = new DbHelper();  //veritabanı bağlantı kodlarını yazdığımız class.
@@ -11,7 +11,7 @@ public class MysqlCargo{
     PreparedStatement statement2 = null; //insert,update,delete gibi işlemler için.
     ResultSet resultSet; //gelen sonucun tutulması için.
 
-
+    @Override
     public LinkedList<Cargo> GetAll() {
         try {
             connection = helper.getConnection();  //bağlanma.
@@ -33,9 +33,10 @@ public class MysqlCargo{
         return null;
     }
 
+    @Override
     public Cargo getByID(String id) {
         String person = " ";
-        Cargo cargo=null;
+        Cargo cargo = null;
         try {
             connection = helper.getConnection();  //bağlanma.
             System.out.println("Bağlantı oluştu.");
@@ -45,7 +46,7 @@ public class MysqlCargo{
 
 
             while (resultSet.next()) { //burda da gelen dataları array liste atıyoruz.
-                cargo=new Cargo(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("surname"), resultSet.getString("phone"),resultSet.getString("address"),resultSet.getInt("state")); //select ile çağırdığımız verileri bir arraylist e attık.); //select ile çağırdığımız verileri bir arraylist e attık.
+                cargo = new Cargo(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getString("surname"), resultSet.getString("phone"), resultSet.getString("address"), resultSet.getInt("state")); //select ile çağırdığımız verileri bir arraylist e attık.); //select ile çağırdığımız verileri bir arraylist e attık.
             }
             return cargo;
 
@@ -55,6 +56,7 @@ public class MysqlCargo{
         return cargo;
     }
 
+    @Override
     public void Delete(String id) {
         try {
             connection = helper.getConnection();  //bağlanma.
@@ -69,24 +71,9 @@ public class MysqlCargo{
         }
 
     }
-    public void Create(Cargo entity) {
-        try {
-            connection = helper.getConnection();  //bağlanma.
-            System.out.println("Bağlantı oluştu.");
-            String sql = "insert into cargo (name,surname,phone,address,state) values(?,?,?,?,?)"; //burada sql kodunu tanımla ve değikene at.
-            statement2 = connection.prepareStatement(sql); //sql kodunun çalışması için
-            statement2.setString(1, entity.getName());  //bunlar da koddaki soru işaretleri yerine gelecekler.
-            statement2.setString(2, entity.getSurname());
-            statement2.setString(3, entity.getPhone());
-            statement2.setString(4, entity.getAddress());
-            statement2.setInt(5, 2);
 
-            int result = statement2.executeUpdate();  //etkilenen satır sayısını verir.
 
-        } catch (SQLException exception) {
-            exception.printStackTrace();
-        }
-    }
+
     public void Create2(Cargo entity) {
         try {
             connection = helper.getConnection();  //bağlanma.
@@ -107,6 +94,7 @@ public class MysqlCargo{
         }
     }
 
+    @Override
     public int Update(Cargo entity) {
         int result;
         try {
@@ -118,7 +106,7 @@ public class MysqlCargo{
             statement2.setString(2, entity.getSurname());
             statement2.setString(3, entity.getPhone());
             statement2.setString(4, entity.getAddress());
-            statement2.setInt(5,entity.getId());
+            statement2.setInt(5, entity.getId());
             result = statement2.executeUpdate();  //son iki satır olmasa da olur sadece kontrol amaçlı
             return result;
         } catch (SQLException exception) {
@@ -126,8 +114,10 @@ public class MysqlCargo{
         }
         return 0;
     }
-    public int getLastCargo(){   //değişti
-        int id=0;
+
+    @Override
+    public int getLastCargo() {   //değişti
+        int id = 0;
         try {
             connection = helper.getConnection();  //bağlanma.
             System.out.println("Bağlantı oluştu.");
@@ -136,7 +126,7 @@ public class MysqlCargo{
             resultSet = statement.executeQuery("SELECT * FROM cargo ORDER BY id DESC LIMIT 1");  //gelen sonuçlar da resultSet e aktarılıyor.
 
             while (resultSet.next()) { //burda da gelen dataları array liste atıyoruz.
-                id=resultSet.getInt("id");
+                id = resultSet.getInt("id");
 
             }
             return id;
@@ -147,7 +137,8 @@ public class MysqlCargo{
         return id;
     }
 
-    public int send(Cargo entity){
+    @Override
+    public int send(Cargo entity) {
         int result;
         try {
             connection = helper.getConnection();  //bağlanma.
@@ -157,8 +148,8 @@ public class MysqlCargo{
             statement2.setString(2, entity.getSurname());
             statement2.setString(3, entity.getPhone());
             statement2.setString(4, entity.getAddress());
-            statement2.setInt(5,2);
-            statement2.setInt(6,entity.getId());
+            statement2.setInt(5, 2);
+            statement2.setInt(6, entity.getId());
             result = statement2.executeUpdate();  //son iki satır olmasa da olur sadece kontrol amaçlı
             return result;
         } catch (SQLException exception) {
@@ -167,5 +158,7 @@ public class MysqlCargo{
         return 0;
     }
 
-
+    @Override
+    public void Create(Cargo entity) {
+    }
 }

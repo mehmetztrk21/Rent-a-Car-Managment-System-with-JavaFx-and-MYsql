@@ -195,6 +195,11 @@ public class KargoController implements Initializable {
             alert.setTitle("Başarılı");
             alert.setHeaderText("Sistem Mesajı");
             alert.setContentText((name + " adlı kargo sahibine " + id + " sipariş kargolandı."));
+            cargoname.setText("");
+            cargosurname.setText("");
+            cargophone.setText("");
+            cargoaddress.setText("");
+            cargoip.setText("");
 
         }
         else{
@@ -215,7 +220,12 @@ public class KargoController implements Initializable {
         alert.setHeaderText("Sistem Mesajı");
         alert.setContentText(("Kargo iptal edildi."));
         alert.showAndWait();
-        //tcustomer.setItems(getAll());
+        cargonameshow1.setText("");
+        cargosurnameshow1.setText("");
+        cargophoneshow1.setText("");
+        cargoaddressshow1.setText("");
+        deletecargoip.setText("");
+
     }
 
     public Cargo getById(String id) {
@@ -234,7 +244,6 @@ public class KargoController implements Initializable {
             } else if (cargo1.getState() == 3) {
                 progressbar.setProgress(1.0);
             }
-            //cargofindlabel.setStyle("-fx-background-color:white;");
         } catch (Exception e) {
         }
 

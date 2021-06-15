@@ -67,8 +67,6 @@ public class MaliyeController implements Initializable {
     private TableColumn<Urunler, Float> colFiyat;
     @FXML
     private TableColumn<Urunler, Integer> colStok;
-    @FXML
-    private TableColumn<Urunler, String> colDurum;
 
     @FXML
     private TextField araTxt;
@@ -257,6 +255,15 @@ public class MaliyeController implements Initializable {
         LinkedList<Urunler> get_urun = new LinkedList<Urunler>();
         get_urun = urun.GetAll2();
         for (int i = 0; i < get_urun.size(); i++) {
+            int stock;
+            try{
+                stock=Integer.parseInt(get_urun.get(i).getStokSuan());
+            }
+            catch (Exception ex){
+                stock=0;
+            }
+            if(stock<0 || get_urun.get(i).getStokSuan().equals(""))
+                get_urun.get(i).setStokSuan("0");
             urunler.add(get_urun.get(i));
         }
         return urunler;

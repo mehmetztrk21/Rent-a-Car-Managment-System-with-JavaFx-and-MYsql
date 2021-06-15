@@ -34,17 +34,17 @@ public class MysqlUrunler implements IUrunler {
         }
         return null;
     }
-    public LinkedList<Urunler> GetAll2() {
-        try {
-            connection = helper.getConnection();  //bağlanma.
-            System.out.println("Bağlantı oluştu.");
-            statement = connection.createStatement();  //statement böyle oluyor.(select için)
+                public LinkedList<Urunler> GetAll2() {
+                    try {
+                        connection = helper.getConnection();  //bağlanma.
+                        System.out.println("Bağlantı oluştu.");
+                        statement = connection.createStatement();  //statement böyle oluyor.(select için)
 
-            resultSet = statement.executeQuery("SELECT * from parcalar");  //gelen sonuçlar da resultSet e aktarılıyor.
+                        resultSet = statement.executeQuery("SELECT * from parcalar");  //gelen sonuçlar da resultSet e aktarılıyor.
 
-            LinkedList<Urunler> urunler2 = new LinkedList<Urunler>();
+                        LinkedList<Urunler> urunler2 = new LinkedList<Urunler>();
 
-            while (resultSet.next()) { //burda da gelen dataları array liste atıyoruz.
+                        while (resultSet.next()) {//burda da gelen dataları array liste atıyoruz.
                 urunler2.add(new Urunler(resultSet.getString("URUN_KODU"), resultSet.getString("MARKA"), resultSet.getString("URUN_ADI"), resultSet.getString("2021_GUNCEL"), resultSet.getString("SATINALMA_FIYATI")+" "+ resultSet.getString("SATINALMA_BIRIM"))); //select ile çağırdığımız verileri bir arraylist e attık.
             }
             return urunler2;

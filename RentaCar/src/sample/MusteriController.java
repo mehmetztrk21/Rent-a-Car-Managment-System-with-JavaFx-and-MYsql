@@ -27,7 +27,7 @@ public class MusteriController implements Initializable {
     @FXML
     public TextField caphone;
     @FXML
-    private TextField casifre;
+    private PasswordField casifre;
     @FXML
     private TextField cakullanici;
     @FXML
@@ -95,7 +95,7 @@ public class MusteriController implements Initializable {
     private Button btn;
 
     @FXML
-    private TextField sifre;
+    private PasswordField sifre;
 
     @FXML
     private Label soyadLbl;
@@ -290,13 +290,12 @@ public class MusteriController implements Initializable {
                 customer.setPhone(emphone.getText());
                 customer.setEmail(emmail.getText());
                 SaveCustomer(customer);
-                emname.setVisible(false);
-                emsurname.setVisible(false);
-                emphone.setVisible(false);
-                emmail.setVisible(false);
-                emsave.setVisible(false);
-                emkullanici.setVisible(false);
-                emsifre.setVisible(false);
+                emname.setText("");
+                emsurname.setText("");
+                emphone.setText("");
+                emmail.setText("");
+                emkullanici.setText("");
+                emsifre.setText("");
             }
         });
 
@@ -327,7 +326,7 @@ public class MusteriController implements Initializable {
     }
     public ObservableList<User> getAllUser(){
         MysqlUser user=new MysqlUser();
-        ObservableList<User> users = FXCollections.observableArrayList();
+        ObservableList<User> users = FXCollections.observableArrayList();   //Arayüzdeki tabloya eklememiz için ObservableList kullanılacak.
         LinkedList<User> get_users=new LinkedList<User>();
         get_users=user.GetAll();
         for (int i=0;i<get_users.size();i++){
@@ -369,6 +368,8 @@ public class MusteriController implements Initializable {
         alert.setHeaderText("Sistem Mesajı");
         alert.setContentText(("Müşteri silindi."));
         alert.showAndWait();
+        dcid.setText("");
+        controlcustomername.setText("");
         tcustomer.setItems(getAll());
         contactView.setItems(getAllUser());
     }

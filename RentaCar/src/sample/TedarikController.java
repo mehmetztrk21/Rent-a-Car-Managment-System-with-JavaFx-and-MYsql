@@ -55,9 +55,6 @@ public class TedarikController implements Initializable {
     @FXML
     private TextField araTxt;
 
-    //TODO tabloda fiyat yazan kısma exceldeki satın alma fiyatı yazan kısım ve yanına da birimi yazdırılacak
-    //Todo tablodaki herhangi bir satıra basılınca listview e ürünün adı eklenecek bu kısmı ben yapabilirim daha sonra
-
 
     @FXML
     void SatinAl(ActionEvent event) {  //burası değişti.
@@ -68,13 +65,11 @@ public class TedarikController implements Initializable {
             alert.setHeaderText("Eksik Giriş!");
             alert.setContentText("Lütfen bilgileri eksiksiz girin.");
             alert.showAndWait();
-        }else{
-            //todo listview(SatinUrunler) de ne ürün varsa fiyatı tablodan çekilecek ve topfiyat yazan label a yazdırılacak
-            //todo satın al butonuna basınca aynı zamanda exceldeki 2021 güncel yazan yerde kaç tane o üründen alınmışsa o kadar arttırılacak
-            //todo aynı şekilde satin al butonuna basılınca listIptal yazan listview'e o ürün eklenecek ve SatinUrunler listview'inden silinecek
+        }else
+            {
             System.out.println(SatinAdSoyad.getText());
             CreateCargo(SatinAdSoyad.getText().split(" ")[0],SatinAdSoyad.getText().split(" ")[1],SatinTelf.getText(),SatinAdres.getText(),topFiyat.getText().split(" ")[0]);  //değişti.
-            MysqlCargo cargo=new MysqlCargo();  //burayı ekledim.
+            MysqlCargo cargo=new MysqlCargo();
             CreateOrdes(cargo.getLastCargo(),SatinUrunler.getItems());
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Giriş");
@@ -166,14 +161,13 @@ public class TedarikController implements Initializable {
         }
         return urunler;
     }
-    //alttaki 2 fonksiyon eklendi.
     void CreateCargo(String name,String surname,String phone,String adress,String price){
         MysqlCargo cargo=new MysqlCargo();
         Cargo cargo1=new Cargo(name,surname,phone,adress,1,Double.parseDouble(price));
 
         cargo.Create2(cargo1);
     }
-    void CreateOrdes(int id,ObservableList<String> orders){  //burayı ekledim.
+    void CreateOrdes(int id,ObservableList<String> orders){
 
         for (int i=0;i<orders.size();i++){
 

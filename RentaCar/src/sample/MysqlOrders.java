@@ -4,13 +4,14 @@ package sample;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class MysqlOrders {
+public class MysqlOrders implements IOrder {
     Connection connection = null;
     DbHelper helper = new DbHelper();  //veritabanı bağlantı kodlarını yazdığımız class.
     Statement statement = null;  //Select işlemi için yani veritabanından bilgi çekmek için.
     PreparedStatement statement2 = null; //insert,update,delete gibi işlemler için.
     ResultSet resultSet; //gelen sonucun tutulması için.
 
+    @Override
     public void Create(int id, String product) {
         try {
             connection = helper.getConnection();  //bağlanma.
@@ -27,6 +28,7 @@ public class MysqlOrders {
         }
     }
 
+    @Override
     public void Delete(int id, String name) {
         try {
             connection = helper.getConnection();  //bağlanma.
@@ -34,7 +36,7 @@ public class MysqlOrders {
             String sql_delete = "delete from orders where cargo_id=? and name=?";
             statement2 = connection.prepareStatement(sql_delete);
             statement2.setInt(1, id);
-            statement2.setString(2,name);
+            statement2.setString(2, name);
             int result = statement2.executeUpdate();
 
         } catch (SQLException exception) {
@@ -42,8 +44,10 @@ public class MysqlOrders {
         }
 
     }
-    public ArrayList<Order> GetById(String id){
-        ArrayList<Order> orders=new ArrayList<Order>();
+
+    @Override
+    public ArrayList<Order> GetById(String id) {
+        ArrayList<Order> orders = new ArrayList<Order>();
         try {
             connection = helper.getConnection();  //bağlanma.
             System.out.println("Bağlantı oluştu.");

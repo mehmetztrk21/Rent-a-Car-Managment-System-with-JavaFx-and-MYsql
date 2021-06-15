@@ -90,6 +90,19 @@ public class YillikController implements Initializable {
         LinkedList<Urunler> get_urun=new LinkedList<Urunler>();
         get_urun=urun.GetAll();
         for (int i=0;i<get_urun.size();i++){
+                int stock;
+                boolean control=false;
+                try{
+                    stock=Integer.parseInt(get_urun.get(i).getStokSuan());
+                    control= get_urun.get(i).getStokGelecek().contains("-");
+                }
+                catch (Exception ex){
+                    stock=0;
+                }
+                if(stock<0 || get_urun.get(i).getStokSuan().equals(""))
+                    get_urun.get(i).setStokSuan("0");
+                if (control)
+                  get_urun.get(i).setStokGelecek("0");
             urunler.add(get_urun.get(i));
         }
         return urunler;
